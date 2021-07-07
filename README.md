@@ -3,7 +3,7 @@
 软件架构
 软件架构说明
 
-Java+MySQL+Swing实现校园图书交易系统
+Java+MySQL+Swing实现校园图书交易系统`<br/>`
 MySQL用户采用：
 用户名：root(@localhost)
 密码：123456
