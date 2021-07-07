@@ -40,8 +40,8 @@ public class User {
         this.userName=userName;
         this.userSex=userSex;
         this.userContact=userContact;
-        Jdbcs d =new Jdbcs();
-        //d.insert(userId,userCode,userName,userSex,userContact);
+        //link database
+
     }
 
     /**
@@ -83,11 +83,36 @@ public class User {
     public String getUserContact(){
         return  userContact;
     }
+
     /**
-     * set user's Id
-     * @param userId user's id
+     * set user's Code
+     * @param userCode user's code
      */
-    public  void setUserId(int userId){
-        this.userId=userId;
+    public void setUserCode(String userCode){
+        this.userCode=userCode;
+    }
+
+    /**
+     * set user's name
+     * @param userName user's name
+     */
+    public void setUserName(String userName){
+        this.userName=userName;
+    }
+
+    /**
+     * set user's sex
+     * @param userSex user's sex
+     */
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+
+    /**
+     * set user's contact
+     * @param userContact user's contact
+     */
+    public void setUserContact(String userContact){
+        this.userContact=userContact;
     }
 }
