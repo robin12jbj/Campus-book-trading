@@ -2,8 +2,12 @@ package LoginAndSign;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 import javax.swing.JButton; 
 import javax.swing.JFrame; 
 import javax.swing.JLabel; 
@@ -13,9 +17,9 @@ import javax.swing.JTextField;
 
 
 public class UserRegister extends JFrame  implements ActionListener{
-	JPanel pan,p1,p2,p3,p4,p5,p6;
-	JTextField t1,t2,t3,t5;
-	JLabel namelab,passlab,doublepasslab,sex,information;
+	JPanel pan,p1,p2,p3,p4,p5,p6,p7;
+	JTextField t1,t2,t3,t5,t7;
+	JLabel name,namelab,passlab,doublepasslab,sex,information;
 	JRadioButton boy,girl;
 	JButton confirm,cancel;
 	
@@ -23,7 +27,7 @@ public class UserRegister extends JFrame  implements ActionListener{
 	
 	public UserRegister(){
 		Font font = new Font("宋体", Font.BOLD, 15);
-	       //用户名
+	       //账号
 		p1=new JPanel(new FlowLayout(FlowLayout.LEFT));
 		 namelab=new JLabel("用户名");
 		 t1=new JTextField(18);
@@ -62,6 +66,15 @@ public class UserRegister extends JFrame  implements ActionListener{
 		 this.add(p4);
 		 sex.setFont(font);
 		 
+		 //真实姓名
+		 p7=new JPanel(new FlowLayout(FlowLayout.LEFT));
+		 name=new JLabel("真实姓名");
+		 t7=new JTextField(18);
+		 p7.add(name);
+		 p7.add(t7);
+		 this.add(p7);
+		 name.setFont(font);
+		 
 		 //联系方式
 		 p5=new JPanel(new FlowLayout(FlowLayout.LEFT));
 		 information=new JLabel("联系方式");
@@ -80,6 +93,9 @@ public class UserRegister extends JFrame  implements ActionListener{
 		 this.add(p6);
 		 confirm.setFont(font);
 		 cancel.setFont(font);
+		 
 	}
-	
+	public static void main(String[] args) {
+		
+	}
 }
