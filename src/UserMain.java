@@ -3,20 +3,22 @@ import javax.swing.*;
 public class UserMain extends JFrame {
     private final JPanel pan = new JPanel();
     private final JButton button = new JButton("无");
+    private final int AccountNumber;
+    private int Password;
 
-    public UserMain() {
+    public UserMain(int AccountNumber) {
+        super.add(pan);
+        this.AccountNumber = AccountNumber;
 
         this.setLayout(null);
         pan.add(button);
-        super.add(pan);
+
         this.setVisible(true);
 
         setLocationRelativeTo(null);
     }
 
-    public static void main(String[] args) {
-        new UserMain();
-    }
+
 
 
 }

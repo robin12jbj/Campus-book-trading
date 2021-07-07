@@ -92,14 +92,13 @@ public class LoginInterface extends JFrame implements ActionListener {
             //选中管理员登录按钮
             if (d.isAdmin(AccountNumber, Password)) {
                 //管理员账号密码正确,登录管理员界面
-                new AdministratorMain();
-
+                new AdministratorMain(AccountNumber);
             }
         } else {
             //以用户身份登录
             if (d.isUser(AccountNumber, Password)) {
                 //用户账号密码正确，登录用户界面
-                new UserMain();
+                new UserMain(AccountNumber);
 
             }
         }
