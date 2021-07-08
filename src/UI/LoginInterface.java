@@ -1,6 +1,7 @@
 package UI;
-import util.Jdbcs;
-import LoginAndSign.*;
+
+import LoginAndSign.AdministratorLoginAndSign;
+import LoginAndSign.UserLoginAndSign;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class LoginInterface extends JFrame implements ActionListener {
     private final JPasswordField passtext = new JPasswordField();
     public JButton denglu = new JButton("登录");
     public JButton zhuce = new JButton("注册");
-    private final JRadioButton button = new JRadioButton("管理员登录");
+    private final JRadioButton button = new JRadioButton("管理员登录/注册");
 
 
     public LoginInterface() {
@@ -75,15 +76,17 @@ public class LoginInterface extends JFrame implements ActionListener {
             try {
                 denglu(Integer.parseInt(nametext.getText()), String.valueOf(passtext.getPassword()));
             } catch (Exception q) {
+                //没有输入账号密码，提示输入
                 JOptionPane.showMessageDialog(null, "请输入账号密码！");
             }
         } else if (e.getSource() == zhuce) {
-            try {
-                zhuce(Integer.parseInt(nametext.getText()), String.valueOf(passtext.getPassword()));
-            } catch (Exception q) {
-                JOptionPane.showMessageDialog(null, "请输入合法的账号（只包含数字）！");
-
-            }
+           //注册按钮，开启用户注册或管理员注册页面
+                if(button.isSelected()){
+                    new AdministratorSignInterface();
+                }
+                else{
+                    new UserSignInterface();
+                }
         }
     }
 
@@ -91,18 +94,23 @@ public class LoginInterface extends JFrame implements ActionListener {
      * 登陆按钮的事件处理函数
      */
     public void denglu(int AccountNumber, String Password) {
-        Jdbcs d = new Jdbcs();
+
         if (button.isSelected()) {
             //选中管理员登录按钮
-            if (d.isAdmin(AccountNumber, Password)) {
+            if (new AdministratorLoginAndSign().Login(AccountNumber,Password)) {
                 //管理员账号密码正确,登录管理员界面
+                //账号密码不正确的提示在Login函数中，无需继续添加提示
                 new AdministratorMain();
+                this.dispose();
             }
         } else {
             //以用户身份登录
-            if (d.isUser(AccountNumber, Password)) {
+            if (new UserLoginAndSign().Login(AccountNumber,Password)) {
                 //用户账号密码正确，登录用户界面
+                //账号密码不正确的提示在Login函数中，无需继续添加提示
+
                 new UserMain();
+                this.dispose();
 
             }
         }
@@ -110,13 +118,8 @@ public class LoginInterface extends JFrame implements ActionListener {
 
     }
 
-    /**
-     * 注册按钮的事件处理函数
-     */
-    public void zhuce(int AccountNumber, String Password) {
-        Jdbcs d = new Jdbcs();
-        d.insert(AccountNumber, Password);
-    }
+
+
 }
 
 
