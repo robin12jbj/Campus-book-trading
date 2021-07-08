@@ -46,8 +46,6 @@ public class Book {
         this.messagePressTime=messagePressTime;
         this.expectedPrice=expectedPrice;
         this.bookDetail=bookDetail;
-        //link database
-
     }
 
     /**
