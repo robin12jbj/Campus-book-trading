@@ -33,9 +33,8 @@ public class AdministratorLoginAndSign extends Jdbcs {
             }
             //不管执行成功与否，都进行关闭数据库连接操作
             try{
-                con.close();
                 statement.close();
-                res.close();
+                con.close();
             }catch (SQLException e){
                 JOptionPane.showMessageDialog(null, "数据库关闭出现异常！");
                 e.printStackTrace();
@@ -67,9 +66,9 @@ public class AdministratorLoginAndSign extends Jdbcs {
     }
     //不管执行成功与否，都进行关闭数据库连接操作
     try{
-        con.close();
-        statement.close();
         res.close();
+        statement.close();
+        con.close();
     }catch (SQLException e){
         JOptionPane.showMessageDialog(null, "数据库关闭出现异常！");
     }

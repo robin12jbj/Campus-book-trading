@@ -25,8 +25,9 @@ public class UserLoginAndSign extends Jdbcs{
         }
         //不管执行成功与否，都进行关闭数据库连接操作
         try{
-            con.close();
+
             statement.close();
+            con.close();
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "关闭数据库出现异常！");
         }
@@ -52,9 +53,10 @@ public class UserLoginAndSign extends Jdbcs{
             e.printStackTrace();
         }
         try{
-            con.close();
-            statement.close();
             res.close();
+            statement.close();
+            con.close();
+
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, "关闭数据库出现异常！");
         }
