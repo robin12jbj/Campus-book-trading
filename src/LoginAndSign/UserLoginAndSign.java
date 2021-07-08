@@ -12,7 +12,7 @@ public class UserLoginAndSign extends Jdbcs{
     }
     public boolean Sign(int AccountNumber,String Password,String Name,String Sex,String Tel ){
         boolean f=false;
-    String sql="insert into user values("+AccountNumber+",'"+Password+"','"+Password+"','"+Name+"','"+Sex+"','"+Tel+"')";
+    String sql="insert into user values("+AccountNumber+",'"+Password+"','"+Name+"','"+Sex+"','"+Tel+"')";
         try {
             int a = statement.executeUpdate(sql);
             if (a == 1) {
