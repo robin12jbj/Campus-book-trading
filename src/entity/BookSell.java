@@ -11,7 +11,10 @@ public class BookSell extends Book{
      * the contact of seller
      */
     private String sellContact;
-
+    /**
+     * the id of seller
+     */
+    private int sellerId;
     /**
      *
      * @param sellNo the number of book selling message
@@ -25,10 +28,11 @@ public class BookSell extends Book{
      * @param bookDetail detail
      * @param sellContact the contact of seller
      */
-    BookSell(int sellNo,String bookName, BookType bookType, String bookPress, String bookAuthor,
+    BookSell(int sellNo,int sellerId,String bookName, BookType bookType, String bookPress, String bookAuthor,
              Date bookPressTime, Date messagePressTime, double expectedPrice, String bookDetail,String sellContact) {
         super(bookName, bookType, bookPress, bookAuthor, bookPressTime, messagePressTime, expectedPrice, bookDetail);
         this.sellNo=sellNo;
+        this.sellerId=sellerId;
         this.sellContact=sellContact;
     }
 
@@ -54,5 +58,13 @@ public class BookSell extends Book{
      */
     public int getSellNo() {
         return sellNo;
+    }
+
+    /**
+     * get the id of seller
+     * @return sellerId
+     */
+    public int getSellerId() {
+        return sellerId;
     }
 }
