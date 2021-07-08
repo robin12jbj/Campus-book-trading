@@ -23,6 +23,13 @@ public class UserLoginAndSign extends Jdbcs{
             JOptionPane.showMessageDialog(null, "对不起该用户账号已被占用！请重新输入！");
             e.printStackTrace();
         }
+        //不管执行成功与否，都进行关闭数据库连接操作
+        try{
+            con.close();
+            statement.close();
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "关闭数据库出现异常！");
+        }
         return  f;
     }
     public boolean Login(int AccountNumber,String Password){
@@ -41,12 +48,18 @@ public class UserLoginAndSign extends Jdbcs{
             } else {
                 JOptionPane.showMessageDialog(null, "用户不存在！请重新输入账号！");
             }
-
-
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "运行到这里！");
             e.printStackTrace();
         }
+        try{
+            con.close();
+            statement.close();
+            res.close();
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "关闭数据库出现异常！");
+        }
+
+
         return f;
     }
 }

@@ -31,6 +31,15 @@ public class AdministratorLoginAndSign extends Jdbcs {
                 JOptionPane.showMessageDialog(null, "该管理员账号已存在，请重新输入！");
                 e.printStackTrace();
             }
+            //不管执行成功与否，都进行关闭数据库连接操作
+            try{
+                con.close();
+                statement.close();
+                res.close();
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, "数据库关闭出现异常！");
+                e.printStackTrace();
+            }
 
         }else{
             JOptionPane.showMessageDialog(null, "密钥错误，请重新输入！");
@@ -55,6 +64,14 @@ public class AdministratorLoginAndSign extends Jdbcs {
         }
     }catch (SQLException e){
         e.printStackTrace();
+    }
+    //不管执行成功与否，都进行关闭数据库连接操作
+    try{
+        con.close();
+        statement.close();
+        res.close();
+    }catch (SQLException e){
+        JOptionPane.showMessageDialog(null, "数据库关闭出现异常！");
     }
     return f;
     }
