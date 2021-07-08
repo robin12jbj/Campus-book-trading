@@ -7,18 +7,18 @@ import java.awt.event.ActionListener;
 
 public class  AdministratorSignInterface extends JFrame implements ActionListener {
     private final JPanel pan = new JPanel();
-    private final JLabel name = new JLabel("ÓÃ»§Ãû");
-    private final JLabel password = new JLabel("ÃÜ Âë");
-    private final JLabel secretkey= new JLabel("ÑûÇëÂë");
+    private final JLabel name = new JLabel("ç”¨æˆ·å");
+    private final JLabel password = new JLabel("å¯†ç ");
+    private final JLabel secretkey= new JLabel("é‚€è¯·ç ");
     private final JTextField nametext = new JTextField();
     private final JPasswordField passwordtext = new JPasswordField();
     private final JTextField secretkeytext = new JTextField();
-    public JButton confirm = new JButton("È·ÈÏ");
-    public JButton cancel= new JButton("È¡Ïû");
+    public JButton confirm = new JButton("ç¡®è®¤");
+    public JButton cancel= new JButton("å–æ¶ˆ");
 
     public AdministratorSignInterface() {
-        Font font = new Font("ËÎÌå", Font.BOLD, 15);
-        super.setTitle("Ğ£Ô°Í¼Êé½»Ò×ÏµÍ³");
+        Font font = new Font("å®‹ä½“", Font.BOLD, 15);
+        super.setTitle("ç®¡ç†å‘˜æ³¨å†Œ");
         pan.setLayout(null);
         pan.add(name);
         pan.add(nametext);
@@ -50,7 +50,7 @@ public class  AdministratorSignInterface extends JFrame implements ActionListene
         super.add(pan);
         super.setSize(600, 600);
         super.setVisible(true);
-        //ÉèÖÃ¹Ø±Õ½ø³Ì£¬ÍË³öÓ¦ÓÃ³ÌĞò
+        
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
@@ -61,16 +61,12 @@ public class  AdministratorSignInterface extends JFrame implements ActionListene
     }
 
 
-    /**
-     * Invoked when an action occurs
-     */
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
 
-    /**
-     * µÇÂ½°´Å¥µÄÊÂ¼ş´¦Àíº¯Êı
-     */
+
     public void denglu(int AccountNumber, String Password) {
 
     }
