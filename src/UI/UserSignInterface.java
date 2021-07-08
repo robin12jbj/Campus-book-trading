@@ -5,6 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author wang-yixi
+ * @version 1.0.0
+ * Login.java
+ *用户注册
+ *
+ */
 public class UserSignInterface extends JFrame  implements ActionListener {
 	private final JPanel pan = new JPanel();
     JTextField t1,t2,t3,t5,t7;
