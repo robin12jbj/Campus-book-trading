@@ -1,15 +1,18 @@
 package UI;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 public class AdministratorMain {
 		public void test() {		//定义一个test方法
 			JFrame frame=new JFrame("@author 林白水");
+			frame.setSize(800,440);
+			//设置窗体大小
+			frame.setLocationRelativeTo(null);
+			//窗体居中
 			//取消布局管理器
 			frame.setLayout(null);
 			//绝对定位窗体的位置和大小
-			frame.setBounds(300,150,0,0); 
-				
+			//frame.setBounds(300,150,0,0);
 			JLabel lab1=new JLabel("校园二手图书交易系统后台管理中心");
 			lab1.setBackground(Color.gray);
 			lab1.setOpaque(true);
@@ -125,8 +128,6 @@ public class AdministratorMain {
 			frame.add(pan1);
 			
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置关闭窗体结束应用程序
-			//设置窗体大小
-			frame.setSize(800,440);
 			//设置窗体可见
 			frame.setVisible(true);
 			
