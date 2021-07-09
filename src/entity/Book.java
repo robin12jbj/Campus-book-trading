@@ -2,6 +2,9 @@ package entity;
 
 import java.util.Date;
 
+/**
+ * @author Mike_hsj
+ */
 public class Book {
     /**
      * book name
@@ -36,6 +39,17 @@ public class Book {
      */
     private String bookDetail;
 
+    /**
+     *
+     * @param bookName book name
+     * @param bookType book type
+     * @param bookPress book publishing house
+     * @param bookAuthor book author
+     * @param bookPressTime book publishing time
+     * @param messagePressTime message press time
+     * @param expectedPrice expected price
+     * @param bookDetail detail
+     */
     Book(String bookName,BookType bookType,String bookPress,String bookAuthor,
          Date bookPressTime, Date messagePressTime,double expectedPrice,String bookDetail){
         this.bookName=bookName;

@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.sql.SQLException;
 import java.util.Date;
 
+/**
+ * @author Mike_hsj
+ */
 public class Seller extends User{
     /**
      * deposit resultSet
@@ -75,16 +78,20 @@ public class Seller extends User{
      * @param expectedPrice expected price
      * @param bookDetail detail
      * @param sellContact the contact of seller
+     * @return rowSet
      */
-    public void addSellMessage(int sellNo, int sellerId, String bookName, BookType bookType, String bookPress, String bookAuthor,
+    public CachedRowSetImpl addSellMessage(int sellNo, int sellerId, String bookName, BookType bookType, String bookPress, String bookAuthor,
                                Date bookPressTime, Date messagePressTime, double expectedPrice, String bookDetail, String sellContact){
         try{
             //link database
             Jdbcs linkDatabase =new Jdbcs();
+            rowSet=new CachedRowSetImpl();
             //insert new sell message
             linkDatabase.res= linkDatabase.statement.executeQuery("insert into sale values("+sellNo+","+sellerId+
-                    ",'"+bookName+"','"+bookType.toString()+"','"+bookPress+"','"+bookAuthor+"',"+bookPressTime+"','"
-                    +messagePressTime+"',"+expectedPrice+",'"+bookDetail+"','"+sellContact+"')");
+                    ",'"+bookName+"','"+bookType.toString()+"','"+bookPress+"','"+bookAuthor+"',"+bookPressTime+","
+                    +messagePressTime+","+expectedPrice+",'"+bookDetail+"','"+sellContact+"')");
+            //full up rowSet
+            rowSet.populate(linkDatabase.res);
             //link close
             linkDatabase.res.close();
             linkDatabase.statement.close();
@@ -92,6 +99,7 @@ public class Seller extends User{
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return rowSet;
     }
 
     /**
@@ -120,16 +128,16 @@ public class Seller extends User{
 
     /**
      * delete seller's selling message
-     * @param sellerNo the number of selling message
+     * @param sellNo the number of selling message
      * @return rowSet
      */
-    public CachedRowSetImpl deleteMySellMessage(int sellerNo){
+    public CachedRowSetImpl deleteMySellMessage(int sellNo){
         try {
             //link database
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //check seller's selling message from sale list
-            linkDatabase.res=linkDatabase.statement.executeQuery("delete from sale where sellerId="+sellerNo);
+            linkDatabase.res=linkDatabase.statement.executeQuery("delete from sale where sellNo="+sellNo);
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close

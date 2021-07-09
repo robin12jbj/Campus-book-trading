@@ -2,6 +2,9 @@ package entity;
 
 import java.util.Date;
 
+/**
+ * @author Mike_hsj
+ */
 public class BookBuy extends Book{
     /**
      * the number of book buying message
@@ -18,6 +21,7 @@ public class BookBuy extends Book{
     /**
      *
      * @param buyNo the number of book buying message
+     * @param buyerId the id of buyer
      * @param bookName book name
      * @param bookType book type
      * @param bookPress book publishing house
