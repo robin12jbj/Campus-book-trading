@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class UserLoginAndSign extends Jdbcs{
     public UserLoginAndSign(){
     super();
-
     }
     public boolean Sign(int AccountNumber,String Password,String Name,String Sex,String Tel ){
         boolean f=false;

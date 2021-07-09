@@ -71,8 +71,13 @@ public class LoginInterface extends JFrame implements ActionListener {
         passlab.setBounds(140, 180, 60, 30);
         passtext.setBounds(240, 180, 140, 30);
         denglu.setBounds(150, 240, 90, 20);
+        denglu.setContentAreaFilled(false);
+        zhuce.setContentAreaFilled(false);
+        denglu.setBorderPainted(false);
+        zhuce.setBorderPainted(false);
         zhuce.setBounds(280, 240, 90, 20);
         button.setBounds(200, 280, 150, 30);
+        button.setContentAreaFilled(false);
         nametext.setFont(font);
         passtext.setFont(font);
         namelab.setFont(font);
@@ -127,7 +132,7 @@ public class LoginInterface extends JFrame implements ActionListener {
             if (new AdministratorLoginAndSign().Login(AccountNumber,Password)) {
                 //管理员账号密码正确,登录管理员界面
                 //账号密码不正确的提示在Login函数中，无需继续添加提示
-                new AdministratorMain();
+                new AdministratorMain().test();
                 this.dispose();
             }
         } else {
