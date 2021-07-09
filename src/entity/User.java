@@ -1,6 +1,5 @@
 package entity;
 
-import util.Jdbcs;
 /**
  * @author Mike_hsj
  */
@@ -40,8 +39,6 @@ public class User {
         this.userName=userName;
         this.userSex=userSex;
         this.userContact=userContact;
-        //link database
-
     }
 
     /**
