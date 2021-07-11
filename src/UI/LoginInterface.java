@@ -16,7 +16,8 @@ import java.awt.event.ActionListener;
  * 2019年06月11日 11:27:00
  */
 public class LoginInterface extends JFrame implements ActionListener {
-    private final JPanel pan = new JPanel();
+    //private final JPanel pan = new JPanel();
+    private final JLabel title=new JLabel("校园图书交易系统");
     private final JPanel pan2=new JPanel();
     private final JLabel namelab = new JLabel("用户名");
     private final JLabel passlab = new JLabel("密 码");
@@ -53,12 +54,16 @@ public class LoginInterface extends JFrame implements ActionListener {
         }
         ImagePanel bgpan=new ImagePanel(new Dimension(this.getWidth(),this.getHeight()),new ImageIcon("./images/book.png").getImage());
         this.setContentPane(bgpan);
+        bgpan.setLayout(null);
         //pan2.setBounds(0,0,super.getWidth(),super.getHeight());
         // JLabel lbBg = new JLabel(new ImageIcon("./images/book.png"));
         // lbBg.setBounds(0, 0,pan.getWidth(), pan.getHeight());
         //pan.add(lbBg);
         //最精准的布局模式空布局
-        bgpan.setLayout(null);
+        title.setFont(new Font("宋体",Font.BOLD,20));
+        bgpan.add(title);
+        title.setBounds(190,10,200,80);
+
         this.getContentPane().add(namelab);
         this.getContentPane().add(nametext);
         this.getContentPane().add(passlab);
@@ -71,8 +76,13 @@ public class LoginInterface extends JFrame implements ActionListener {
         passlab.setBounds(140, 180, 60, 30);
         passtext.setBounds(240, 180, 140, 30);
         denglu.setBounds(150, 240, 90, 20);
+        //denglu.setContentAreaFilled(false);
+        //zhuce.setContentAreaFilled(false);
+        //denglu.setBorderPainted(false);
+        //zhuce.setBorderPainted(false);
         zhuce.setBounds(280, 240, 90, 20);
         button.setBounds(200, 280, 150, 30);
+        button.setContentAreaFilled(false);
         nametext.setFont(font);
         passtext.setFont(font);
         namelab.setFont(font);
@@ -127,7 +137,7 @@ public class LoginInterface extends JFrame implements ActionListener {
             if (new AdministratorLoginAndSign().Login(AccountNumber,Password)) {
                 //管理员账号密码正确,登录管理员界面
                 //账号密码不正确的提示在Login函数中，无需继续添加提示
-                new AdministratorMain();
+                new AdministratorMain().test();
                 this.dispose();
             }
         } else {

@@ -1,5 +1,7 @@
 package UI;
 
+import LoginAndSign.UserLoginAndSign;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ public class UserSignInterface extends JFrame  implements ActionListener {
     JLabel name,namelab,passlab,doublepasslab,sex,information;
     JRadioButton boy,girl;
     JButton confirm,cancel;
+    ButtonGroup buttonGroup=new ButtonGroup();
 
 
 
@@ -26,7 +29,7 @@ public class UserSignInterface extends JFrame  implements ActionListener {
         namelab.setBounds(140,60,80,30);
         t1.setBounds(240,60,150,30);
         namelab.setFont(font);
-
+        setIconImage(new ImageIcon("./images/book.png").getImage());
         //密码
         passlab=new JLabel("密码");
         t2=new JTextField(18);
@@ -49,6 +52,10 @@ public class UserSignInterface extends JFrame  implements ActionListener {
         sex=new JLabel("性别");
         boy=new JRadioButton("男");
         girl=new JRadioButton("女");
+        //按钮组实现只能选择一个
+
+        buttonGroup.add(boy);
+        buttonGroup.add(girl);
         this.boy.setSelected(true);
         pan.add(sex);
         pan.add(boy);
@@ -85,17 +92,20 @@ public class UserSignInterface extends JFrame  implements ActionListener {
         cancel.setFont(font);
         confirm.setBounds(150,380,90,30);
         cancel.setBounds(280,380,90,30);
-        
-        super.add(pan);
-        super.setSize(600, 600);
-        super.setVisible(true);
-        //设置关闭进程，退出应用程序
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        //添加事件监听
+        confirm.addActionListener(this);
+        cancel.addActionListener(this);
+        this.add(pan);
+        this.setSize(600, 600);
+        this.setVisible(true);
+        //关闭该窗体，应用程序不退出，继续显示登陆界面
+        //this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
     public static void main(String[] args) {
 
-        new LoginInterface();
+        new UserSignInterface();
     }
 
 
@@ -104,13 +114,34 @@ public class UserSignInterface extends JFrame  implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-       
+       if(e.getSource()==confirm) {
+        //确认按钮，触发事件,确认注册，进行判断
+           if(!t2.getText().equals(t3.getText())){
+               //两次输入密码不一致
+               JOptionPane.showMessageDialog(null, "两次密码不一致！请重新输入密码！");
+               t2.setText("");
+               t3.setText("");
+           }else{
+                    boolean f;
+                   if(boy.isSelected()){
+                       //男
+                       f=new UserLoginAndSign().Sign(Integer.parseInt(t1.getText()),t2.getText(),t7.getText(), boy.getText(),t5.getText());
+                   }else{
+                       //女
+                       f=new UserLoginAndSign().Sign(Integer.parseInt(t1.getText()),t2.getText(),t7.getText(), girl.getText(),t5.getText());
+                   }
+                   if(f){
+                       this.dispose();
+                       //注册成功，销毁当前页面
+                   }
+
+           }
+       }else{
+           //取消按钮，触发事件，销毁当前页面，但不停止程序运行
+           this.dispose();
+       }
     }
 
-
-    public void denglu(int AccountNumber, String Password) {
-    	
-    }
 }
 
 
