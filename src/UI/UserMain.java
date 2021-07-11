@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class UserMain extends JFrame implements ActionListener{
 	private JTextArea text2;
-	JButton btn1,btn2,btn3,btn4,btn20,btn21;
+	JButton btn2,btn3,btn20,btn21;
+	public  JButton btn1=new JButton("买家信息");
+	public 	JButton btn4=new JButton("卖家信息");
 	JPanel pan1,pan2;
 	Container jpanel;
 	public UserMain() {		//定义一个test方法
@@ -29,7 +31,7 @@ public class UserMain extends JFrame implements ActionListener{
 		lab1.setForeground(Color.black);
 
 		//创建按钮组
-		JButton btn1=new JButton("买家信息");
+		//JButton btn1=new JButton("买家信息");
 		btn1.setBackground(Color.gray);
 		btn1.setOpaque(true);
 		Font f2 = new Font("黑体",Font.PLAIN,15);
@@ -43,8 +45,7 @@ public class UserMain extends JFrame implements ActionListener{
 		btn20.setBackground(Color.white);
 
 
-		JButton btn4=new JButton("卖家信息");
-		btn4.setBackground(Color.gray);
+		//JButton btn4=new JButton("卖家信息");		btn4.setBackground(Color.gray);
 		btn4.setOpaque(true);
 		btn4.setFont(f2);
 		btn4.setForeground(Color.black);
@@ -157,18 +158,19 @@ public class UserMain extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		UserMain c= new UserMain();
+		new UserMain();
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int count=this.getContentPane().getComponentCount();
-		if(e.getSource()==btn1)
+
+		int count=this.getContentPane().getComponentCount();//10个
+		if(e.getSource() == btn1)
 		{	System.out.println(1);
 
 		}
-		if(e.getSource()==btn4)
+		else if(e.getSource() == btn4)
 		{
 			this.getContentPane().repaint();
 			System.out.println(1);
