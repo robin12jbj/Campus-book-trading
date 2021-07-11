@@ -26,6 +26,8 @@ public class LoginInterface extends JFrame implements ActionListener {
     public JButton denglu = new JButton("登录");
     public JButton zhuce = new JButton("注册");
     private final JRadioButton button = new JRadioButton("管理员登录/注册");
+    private static int accountNumber;
+    private static String passWord;
 
 
     public LoginInterface() {
@@ -102,6 +104,14 @@ public class LoginInterface extends JFrame implements ActionListener {
         new LoginInterface();
     }
 
+    public static int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public static String getPassWord() {
+        return passWord;
+    }
+
 
     /**
      * Invoked when an action occurs
@@ -137,7 +147,9 @@ public class LoginInterface extends JFrame implements ActionListener {
             if (new AdministratorLoginAndSign().Login(AccountNumber,Password)) {
                 //管理员账号密码正确,登录管理员界面
                 //账号密码不正确的提示在Login函数中，无需继续添加提示
-                new AdministratorMain().test();
+                new AdministratorMain();
+                accountNumber=AccountNumber;
+                passWord=Password;
                 this.dispose();
             }
         } else {

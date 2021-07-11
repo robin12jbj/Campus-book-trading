@@ -2,30 +2,23 @@ package UI;
 
 import entity.Administrator;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import java.sql.*;
-import java.util.Vector;
-import javax.swing.JButton;
-import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class AdministratorMain extends JFrame {
 
 	private JPanel contentPane;
 	private JTable jt;
-
+	private JScrollPane jp;
 
 	//从数据库中取出信息
 	//rowData用来存放行数据
 	//columnNames存放列名
-	Vector<String> rowData;
-	Vector<String> columnNames;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,39 +37,29 @@ public class AdministratorMain extends JFrame {
 	public AdministratorMain() {
 		Administrator administrator= new Administrator(LoginInterface.getAccountNumber(),LoginInterface.getPassWord());
 		ResultSet res;
-		columnNames= new Vector<>();
-		//设置列名
-		columnNames.add("账号");
-		columnNames.add("密码");
-		columnNames.add("姓名");
-		columnNames.add("性别");
-		columnNames.add("联系方式");
 
-		rowData = new Vector<>();
-		//rowData可以存放多行,开始从数据库里取
-
+		String[] columnName ={"账号","密码","真实姓名","性别","联系方式"};
+		Object[][] cellData={};
+		DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+		jt = new JTable(model);
+		jp = new JScrollPane(jt);
+		String[] data=new String[5];
 		res=administrator.checkUser();
-		try {
-			//加载驱动
-			while(res.next()){
-				//rowData可以存放多行
-				rowData.add(String.valueOf(res.getInt(1)));
-				rowData.add(res.getString(2));
-				rowData.add(res.getString(3));
-				rowData.add(res.getString(4));
-				rowData.add(res.getString(5));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally{
-
+		while (true){
 			try {
-				if(res!=null){
-					res.close();
+				if(res.next()){
+					data[0]= String.valueOf(res.getInt(1));
+					data[1]=res.getString(2);
+					data[2]=res.getString(3);
+					data[3]=res.getString(4);
+					data[4]=res.getString(5);
+					model.addRow(data);
 				}
+				else break;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		}
 
 
@@ -92,9 +75,8 @@ public class AdministratorMain extends JFrame {
 		contentPane.add(lblNewLabel);
 
 		//初始化JTable
-		jt = new JTable(rowData,columnNames);
-		jt.setBounds(147, 90, 395, 243);
-		contentPane.add(jt);
+		jp.setBounds(147, 90, 395, 243);
+		contentPane.add(jp);
 
 		JButton btnNewButton = new JButton("图书求购");
 		btnNewButton.setBackground(Color.LIGHT_GRAY);

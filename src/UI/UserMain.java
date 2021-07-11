@@ -1,8 +1,9 @@
 package UI;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-public class BookAlter extends JPanel implements ActionListener{
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class UserMain extends JPanel implements ActionListener{
 	private JTextArea text2;
 	JButton btn1,btn2,btn3,btn4,btn20,btn21;
 
@@ -120,7 +121,7 @@ public class BookAlter extends JPanel implements ActionListener{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BookAlter c= new BookAlter();
+		UserMain c= new UserMain();
 		c.test();
 	}
 
@@ -146,7 +147,7 @@ public class BookAlter extends JPanel implements ActionListener{
         frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);    // 设置模式类型。
         frame.setVisible(true);
         }
-        if(e.getSource()==btn4);
+        if(e.getSource()==btn4)
         {
             JDialog frame = new JDialog();//构造一个新的JFrame，作为新窗口。
             frame.setBounds(// 让新窗口与SwingTest窗口示例错开50像素。
