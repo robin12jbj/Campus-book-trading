@@ -22,7 +22,7 @@ public class Buyer extends User{
      * @param userSex     user's sex
      * @param userContact the way to contact user
      */
-    Buyer(int userId, String userCode, String userName, String userSex, String userContact) {
+    public Buyer(int userId, String userCode, String userName, String userSex, String userContact) {
         super(userId, userCode, userName, userSex, userContact);
     }
 

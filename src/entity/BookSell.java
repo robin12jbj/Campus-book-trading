@@ -32,7 +32,7 @@ public class BookSell extends Book{
      * @param bookDetail detail
      * @param sellContact the contact of seller
      */
-    BookSell(int sellNo,int sellerId,String bookName, BookType bookType, String bookPress, String bookAuthor,
+    public BookSell(int sellNo,int sellerId,String bookName, BookType bookType, String bookPress, String bookAuthor,
              Date bookPressTime, Date messagePressTime, double expectedPrice, String bookDetail,String sellContact) {
         super(bookName, bookType, bookPress, bookAuthor, bookPressTime, messagePressTime, expectedPrice, bookDetail);
         this.sellNo=sellNo;

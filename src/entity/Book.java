@@ -50,7 +50,7 @@ public class Book {
      * @param expectedPrice expected price
      * @param bookDetail detail
      */
-    Book(String bookName,BookType bookType,String bookPress,String bookAuthor,
+    public Book(String bookName,BookType bookType,String bookPress,String bookAuthor,
          Date bookPressTime, Date messagePressTime,double expectedPrice,String bookDetail){
         this.bookName=bookName;
         this.bookType=bookType;

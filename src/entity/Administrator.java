@@ -3,7 +3,6 @@ package entity;
 import com.sun.rowset.CachedRowSetImpl;
 import util.Jdbcs;
 
-import javax.swing.*;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -28,7 +27,7 @@ public class Administrator {
      * @param administratorId the id of Administrator
      * @param administratorCode the code of Administrator
      */
-    Administrator(int administratorId,String administratorCode){
+    public Administrator(int administratorId,String administratorCode){
         this.administratorId=administratorId;
         this.administratorCode=administratorCode;
     }

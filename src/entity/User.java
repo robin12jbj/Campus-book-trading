@@ -33,7 +33,7 @@ public class User {
      * @param userSex user's sex
      * @param userContact the way to contact user
      */
-    User(int userId,String userCode,String userName,String userSex,String userContact){
+    public User(int userId,String userCode,String userName,String userSex,String userContact){
         this.userId=userId;
         this.userCode=userCode;
         this.userName=userName;
