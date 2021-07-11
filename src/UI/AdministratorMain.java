@@ -2,22 +2,15 @@ package UI;
 
 import entity.Administrator;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTable;
-import java.awt.GridBagLayout;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.Vector;
-import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.Color;
 
@@ -31,7 +24,8 @@ public class AdministratorMain extends JFrame {
 	//从数据库中取出信息
 	//rowData用来存放行数据
 	//columnNames存放列名
-	Vector<String> rowData,columnNames;
+	Vector<String> rowData;
+	Vector<String> columnNames;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -50,7 +44,7 @@ public class AdministratorMain extends JFrame {
 	public AdministratorMain() {
 		Administrator administrator= new Administrator(LoginInterface.getAccountNumber(),LoginInterface.getPassWord());
 		ResultSet res;
-		columnNames= new Vector();
+		columnNames= new Vector<>();
 		//设置列名
 		columnNames.add("账号");
 		columnNames.add("密码");
@@ -58,7 +52,7 @@ public class AdministratorMain extends JFrame {
 		columnNames.add("性别");
 		columnNames.add("联系方式");
 
-		rowData = new Vector();
+		rowData = new Vector<>();
 		//rowData可以存放多行,开始从数据库里取
 
 		res=administrator.checkUser();
