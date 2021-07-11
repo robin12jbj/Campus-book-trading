@@ -163,7 +163,7 @@ public class UserMain extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		int count=this.getContentPane().getComponentCount();
 		if(e.getSource()==btn1)
 		{	System.out.println(1);
 
@@ -172,6 +172,13 @@ public class UserMain extends JFrame implements ActionListener{
 		{
 			this.getContentPane().repaint();
 			System.out.println(1);
+			this.getContentPane().repaint();
+			for(int i=0;i<count;i++){
+				Object obj= this.getContentPane().getComponent(i);
+				if(obj instanceof JPanel){
+					((JPanel)obj).removeAll();
+				}
+			}
 
 
 		}
