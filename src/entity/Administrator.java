@@ -314,7 +314,7 @@ public class Administrator {
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //answer user's feedback message
-            linkDatabase.statement.executeUpdate("update feedback set Reply='"+answer+"' where FeedbackId="+feedbackId);
+            linkDatabase.statement.executeUpdate("update feedback set Reply='"+answer+"' , state =true where FeedbackId="+feedbackId);
             linkDatabase.res=linkDatabase.statement.executeQuery("select * from feedback");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
