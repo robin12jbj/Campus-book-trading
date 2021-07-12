@@ -1,16 +1,17 @@
-package UI;
+package book;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class UserMain extends JFrame implements ActionListener{
+public class BookAlter extends JFrame implements ActionListener{
 	private JTextArea text2;
-	JButton btn2,btn3,btn20,btn21;
+	JButton btn2,btn3,btn20,btn21,btn8;
 	public  JButton btn1=new JButton("买家信息");
 	public 	JButton btn4=new JButton("卖家信息");
+	public 	JButton btn7=new JButton("反馈信息");
 	JPanel pan1,pan2;
 	Container jpanel;
-	public UserMain() {		//定义一个test方法
+	public BookAlter() {		//定义一个test方法
 		//JFrame frame=new JFrame("@author 朱旭");
 		this.setSize(800,440);
 		//设置窗体大小
@@ -56,6 +57,14 @@ public class UserMain extends JFrame implements ActionListener{
 		btn6.setBackground(Color.white);
 		JButton btn21=new JButton("删除售卖");
 		btn21.setBackground(Color.white);
+		JButton btn7=new JButton("反馈信息");
+		btn7.setBackground(Color.gray);
+		btn7.setOpaque(true);
+		Font f3 = new Font("黑体",Font.PLAIN,15);
+		btn1.setFont(f3);
+		btn1.setForeground(Color.black);
+		JButton btn8=new JButton("用户反馈");
+		btn8.setBackground(Color.white);
 
 
 		//创建右部的显示面板
@@ -68,8 +77,8 @@ public class UserMain extends JFrame implements ActionListener{
 		JLabel label1=new JLabel("买家信息");
 		label1.setBackground(Color.pink);
 		label1.setOpaque(true);
-		Font f3 = new Font("黑体",Font.PLAIN,15);
-		label1.setFont(f3);
+		Font f4 = new Font("黑体",Font.PLAIN,15);
+		label1.setFont(f4);
 		label1.setForeground(Color.black);
 		label1.setBounds(0, 0, 550, 35);
 
@@ -101,8 +110,8 @@ public class UserMain extends JFrame implements ActionListener{
 		label2.setBackground(Color.pink);
 		label2.setOpaque(true);
 
-		Font f4 = new Font("黑体",Font.PLAIN,15);
-		label2.setFont(f4);
+		Font f5 = new Font("黑体",Font.PLAIN,15);
+		label2.setFont(f5);
 		label2.setForeground(Color.black);
 		label2.setBounds(0, 0, 550, 35);
 
@@ -136,6 +145,8 @@ public class UserMain extends JFrame implements ActionListener{
 		btn5.setBounds(60, 220, 100, 25);
 		btn6.setBounds(60, 250, 100, 25);
 		btn21.setBounds(60, 280, 100, 25);
+		btn7.setBounds(60, 310, 100, 25);
+		btn8.setBounds(60, 340, 100, 25);
 
 
 		//将按钮添加到容器中
@@ -148,6 +159,8 @@ public class UserMain extends JFrame implements ActionListener{
 		jpanel.add(btn5);
 		jpanel.add(btn6);
 		jpanel.add(btn21);
+		jpanel.add(btn7);
+		jpanel.add(btn8);
 
 		jpanel.add(pan1);
 		jpanel.add(pan2);
@@ -165,7 +178,7 @@ public class UserMain extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new UserMain();
+		new BookAlter();
 
 	}
 
