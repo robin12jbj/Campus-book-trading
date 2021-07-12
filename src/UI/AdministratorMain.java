@@ -12,6 +12,8 @@ import java.sql.*;
 
 public class AdministratorMain extends JFrame implements ActionListener {
 
+    private ImageIcon ima;
+    private final JLabel background;
 	private JPanel pan1, pan2;
 	private JTable jt;
 	private JScrollPane jp;
@@ -104,6 +106,9 @@ public class AdministratorMain extends JFrame implements ActionListener {
 		btn10 = new JButton("用户反馈");
 		btn10.setBackground(Color.LIGHT_GRAY);
 		btn10.setBounds(26, 325, 93, 29);
+        ima=new ImageIcon("./images/证件.png");//写入文件路径
+        background=new JLabel(ima);
+        pan1.add(background);
 		pan1.add(btn10);
 		btn10.addActionListener(this);
 
