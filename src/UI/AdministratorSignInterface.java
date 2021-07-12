@@ -9,10 +9,12 @@ import java.awt.event.ActionListener;
 
 public class  AdministratorSignInterface extends JFrame implements ActionListener {
     private final JPanel pan = new JPanel();
+    private ImageIcon ima;
     private final JLabel name = new JLabel("用户名");
     private final JLabel password = new JLabel("密码");
     private final JLabel password2 = new JLabel("确认密码");
     private final JLabel secretkey= new JLabel("邀请码");
+    private final JLabel background;
     private final JTextField nametext = new JTextField();
     private final JTextField passwordtext = new JTextField(18);
     private final JTextField passwordtext2 = new JTextField(18);
@@ -20,8 +22,9 @@ public class  AdministratorSignInterface extends JFrame implements ActionListene
     public JButton confirm = new JButton("确认");
     public JButton cancel= new JButton("取消");
 
+    
     public AdministratorSignInterface() {
-        Font font = new Font("宋体", Font.BOLD, 15);
+        Font font = new Font("宋体", Font.BOLD, 20);
         super.setTitle("管理员注册");
         setIconImage(new ImageIcon("./images/book.png").getImage());
         pan.setLayout(null);
@@ -36,28 +39,35 @@ public class  AdministratorSignInterface extends JFrame implements ActionListene
         pan.add(confirm);
         pan.add(cancel);
         name.setBounds(140, 120, 90, 30);
-        nametext.setBounds(240, 120, 140, 30);
+        nametext.setBounds(240, 120, 160, 30);
 
         password.setBounds(140, 160, 90, 30);
-        passwordtext.setBounds(240, 160, 140, 30);
-
+        passwordtext.setBounds(240, 160, 160, 30);
         password2.setBounds(140, 200, 90, 30);
-        passwordtext2.setBounds(240, 200, 140, 30);
-
+        passwordtext2.setBounds(240, 200, 160, 30);
         secretkey.setBounds(140,240,90,30);
-        secretkeytext.setBounds(240,240,140,30);
+        secretkeytext.setBounds(240,240,160,30);
         confirm.setBounds(150, 320, 90, 20);
         cancel.setBounds(280, 320, 90, 20);
         nametext.setFont(font);
         passwordtext.setFont(font);
         password2.setFont(font);
         passwordtext2.setFont(font);
+        secretkey.setFont(font);
         secretkeytext.setFont(font);
         confirm.setFont(font);
         cancel.setFont(font);
         name.setFont(font);
         password.setFont(font);
         secretkeytext.setFont(font);
+        
+        ima=new ImageIcon("./images/管理员注册界面.png");//写入文件路径
+        background=new JLabel(ima);
+        background.setBackground(Color.WHITE);
+        pan.add(background);
+        background.setBounds(0,0,600,600);
+        
+        pan.setBackground(Color.WHITE);
         super.add(pan);
         super.setSize(600, 600);
         super.setVisible(true);
