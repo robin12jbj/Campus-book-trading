@@ -34,7 +34,7 @@ public class UserLoginAndSign extends Jdbcs{
     }
     public boolean Login(int AccountNumber,String Password){
     boolean f=false;
-        String sql = "select * from user where AccountNumber=" + AccountNumber;
+        String sql = "select * from user where userId=" + AccountNumber;
         try {
             res = statement.executeQuery(sql);
             if (res.next()) {
