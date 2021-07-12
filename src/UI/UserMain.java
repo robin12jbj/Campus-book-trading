@@ -1,17 +1,19 @@
-package book;
+package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class BookAlter extends JFrame implements ActionListener{
+public class UserMain extends JFrame implements ActionListener{
 	private JTextArea text2;
-	JButton btn2,btn3,btn20,btn21,btn8;
+	JButton btn2,btn3,btn5,btn6,btn20,btn21,btn8;
 	public  JButton btn1=new JButton("买家信息");
 	public 	JButton btn4=new JButton("卖家信息");
 	public 	JButton btn7=new JButton("反馈信息");
 	JPanel pan1,pan2;
+	panetest pan3;
+	panel2 pan4;
 	Container jpanel;
-	public BookAlter() {		//定义一个test方法
+	public UserMain() {		//定义一个test方法
 		//JFrame frame=new JFrame("@author 朱旭");
 		this.setSize(800,440);
 		//设置窗体大小
@@ -38,11 +40,11 @@ public class BookAlter extends JFrame implements ActionListener{
 		Font f2 = new Font("黑体",Font.PLAIN,15);
 		btn1.setFont(f2);
 		btn1.setForeground(Color.black);
-		JButton btn2=new JButton("查询售卖");
+		btn2=new JButton("查询售卖");
 		btn2.setBackground(Color.white);
-		JButton btn3=new JButton("发布求购");
+		btn3=new JButton("发布求购");
 		btn3.setBackground(Color.white);
-		JButton btn20=new JButton("删除求购");
+		btn20=new JButton("删除求购");
 		btn20.setBackground(Color.white);
 
 
@@ -51,19 +53,19 @@ public class BookAlter extends JFrame implements ActionListener{
 		btn4.setFont(f2);
 		btn4.setForeground(Color.black);
 		btn4.setBackground(Color.gray);
-		JButton btn5=new JButton("查询求购");
+		btn5=new JButton("查询求购");
 		btn5.setBackground(Color.white);
-		JButton btn6=new JButton("发布售卖");
+		btn6=new JButton("发布售卖");
 		btn6.setBackground(Color.white);
-		JButton btn21=new JButton("删除售卖");
+		btn21=new JButton("删除售卖");
 		btn21.setBackground(Color.white);
-		JButton btn7=new JButton("反馈信息");
+		btn7=new JButton("反馈信息");
 		btn7.setBackground(Color.gray);
 		btn7.setOpaque(true);
 		Font f3 = new Font("黑体",Font.PLAIN,15);
 		btn1.setFont(f3);
 		btn1.setForeground(Color.black);
-		JButton btn8=new JButton("用户反馈");
+		btn8=new JButton("用户反馈");
 		btn8.setBackground(Color.white);
 
 
@@ -97,7 +99,7 @@ public class BookAlter extends JFrame implements ActionListener{
 		pan1.add(text1);
 		pan1.add(button1);
 		pan1.add(text2);
-		pan1.setVisible(true);
+		pan1.setVisible(false);
 		
 		//创建右部的显示面板
 		pan2=new JPanel();
@@ -105,7 +107,8 @@ public class BookAlter extends JFrame implements ActionListener{
 		pan2.setOpaque(true);
 		pan2.setLayout(null);
 		pan2.setBounds(190,60,550,320);
-
+		pan2.setVisible(false);
+		
 		JLabel label2=new JLabel("卖家信息");
 		label2.setBackground(Color.pink);
 		label2.setOpaque(true);
@@ -131,10 +134,24 @@ public class BookAlter extends JFrame implements ActionListener{
 		pan2.add(text3);
 		pan2.add(button2);
 		pan2.add(text4);
-		pan2.setVisible(true);
-
-
-
+		pan2.setVisible(false);
+		
+		//发布售卖信息panel
+		
+		pan3 = new panetest();
+		pan3.setBackground(Color.pink);
+		pan3.setOpaque(true);
+		pan3.setLayout(null);
+		pan3.setBounds(190,60,550,320);
+		pan3.setVisible(false);
+      
+		pan4 = new panel2();
+		pan4.setBackground(Color.pink);
+		pan4.setOpaque(true);
+		pan4.setLayout(null);
+		pan4.setBounds(190,60,550,320);
+		pan4.setVisible(false);
+		
 		//绝对定位按钮的位置和按钮的大小
 		lab1.setBounds(0, 0, 800, 40);
 		btn1.setBounds(60, 70, 100, 25);
@@ -164,40 +181,73 @@ public class BookAlter extends JFrame implements ActionListener{
 
 		jpanel.add(pan1);
 		jpanel.add(pan2);
-		pan2.setVisible(false);
-
+		jpanel.add(pan3);
+		jpanel.add(pan4);
+		
+    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置关闭窗体结束应用程序
 		//设置窗体大小
 		setSize(800,440);
 		//设置窗体可见
 		setVisible(true);
 		btn1.addActionListener(this);
+		btn2.addActionListener(this);
+		btn3.addActionListener(this);
+		btn20.addActionListener(this);
 		btn4.addActionListener(this);
-
+		btn5.addActionListener(this);
+		btn6.addActionListener(this);
+		btn21.addActionListener(this);
+		btn7.addActionListener(this);
+		btn8.addActionListener(this);
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new BookAlter();
+		new UserMain();
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		int count=this.getContentPane().getComponentCount();//10个
+
+		//int count=this.getContentPane().getComponentCount();//10个
 		//System.out.println(count);
 		if(e.getSource() == btn1)
 		{	
-			System.out.println(1);
+			//System.out.println(1);
 			pan1.setVisible(true);
 			pan2.setVisible(false);
+			pan3.setVisible(false);
+			pan4.setVisible(false);
 		}
-		else if(e.getSource() == btn4)
+		if(e.getSource()==btn2)
 		{
-			System.out.println(1);
+			
+			
+		}
+		if(e.getSource()==btn3)
+		{
+			//System.out.println(1);
+			pan1.setVisible(false);
+			pan2.setVisible(false);
+			pan3.setVisible(true);
+			pan4.setVisible(false);
+			
+		}
+		if(e.getSource()==btn20)
+		{
+			
+			
+		}
+		if(e.getSource() == btn4)
+		{
+			//System.out.println(1);
 			pan1.setVisible(false);
 			pan2.setVisible(true);
+			pan3.setVisible(false);
+			pan4.setVisible(false);
 			/*//this.getContentPane().repaint();
 			System.out.println(1);
 			this.getContentPane().repaint();
@@ -209,5 +259,42 @@ public class BookAlter extends JFrame implements ActionListener{
 			}*/
 
 		}
+		if(e.getSource()==btn5)
+		{
+			
+			
+		}
+		if(e.getSource()==btn6)
+		{
+			//System.out.println(1);
+			pan1.setVisible(false);
+			pan2.setVisible(false);
+			pan3.setVisible(true);
+			pan4.setVisible(false);
+		}
+		if(e.getSource()==btn21)
+		{
+			
+			
+		}
+		if(e.getSource()==btn7)
+		{
+			
+			pan1.setVisible(false);
+			pan2.setVisible(false);
+			pan3.setVisible(false);
+			pan4.setVisible(true);
+		}
+		if(e.getSource()==btn8)
+		{
+			pan1.setVisible(false);
+			pan2.setVisible(false);
+			pan3.setVisible(false);
+			pan4.setVisible(true);
+			
+		}
 	}
-}
+	
+			
+		
+	}
