@@ -56,6 +56,8 @@ public class UserSignInterface extends JFrame  implements ActionListener {
         sex=new JLabel("性别");
         boy=new JRadioButton("男");
         girl=new JRadioButton("女");
+        boy.setOpaque(false);
+        girl.setOpaque(false);
         //按钮组实现只能选择一个
 
         buttonGroup.add(boy);
