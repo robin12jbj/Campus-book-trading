@@ -10,10 +10,10 @@ import java.awt.event.ActionListener;
 public class  AdministratorSignInterface extends JFrame implements ActionListener {
     private final JPanel pan = new JPanel();
     private ImageIcon ima;
-    private final JLabel name = new JLabel("用户名");
-    private final JLabel password = new JLabel("密码");
-    private final JLabel password2 = new JLabel("确认密码");
-    private final JLabel secretkey= new JLabel("邀请码");
+    private final JLabel name = new JLabel("用 户 名：");
+    private final JLabel password = new JLabel("密    码：");
+    private final JLabel password2 = new JLabel("确认密码：");
+    private final JLabel secretkey= new JLabel("邀 请 码：");
     private final JLabel background;
     private final JTextField nametext = new JTextField();
     private final JTextField passwordtext = new JTextField(18);
@@ -24,7 +24,7 @@ public class  AdministratorSignInterface extends JFrame implements ActionListene
 
     
     public AdministratorSignInterface() {
-        Font font = new Font("宋体", Font.BOLD, 20);
+        Font font = new Font("楷体", Font.BOLD, 18);
         super.setTitle("管理员注册");
         setIconImage(new ImageIcon("./images/book.png").getImage());
         pan.setLayout(null);
@@ -38,17 +38,17 @@ public class  AdministratorSignInterface extends JFrame implements ActionListene
         pan.add(secretkeytext);
         pan.add(confirm);
         pan.add(cancel);
-        name.setBounds(140, 120, 90, 30);
-        nametext.setBounds(240, 120, 160, 30);
+        name.setBounds(140, 110, 100, 30);
+        nametext.setBounds(240, 110, 160, 30);
 
-        password.setBounds(140, 160, 90, 30);
+        password.setBounds(140, 160, 100, 30);
         passwordtext.setBounds(240, 160, 160, 30);
-        password2.setBounds(140, 200, 90, 30);
-        passwordtext2.setBounds(240, 200, 160, 30);
-        secretkey.setBounds(140,240,90,30);
-        secretkeytext.setBounds(240,240,160,30);
-        confirm.setBounds(150, 320, 90, 20);
-        cancel.setBounds(280, 320, 90, 20);
+        password2.setBounds(140, 210, 100, 30);
+        passwordtext2.setBounds(240, 210, 160, 30);
+        secretkey.setBounds(140,260,100,30);
+        secretkeytext.setBounds(240,260,160,30);
+        confirm.setBounds(150, 330, 90, 30);
+        cancel.setBounds(280, 330, 90, 30);
         nametext.setFont(font);
         passwordtext.setFont(font);
         password2.setFont(font);
