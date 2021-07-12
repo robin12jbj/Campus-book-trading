@@ -68,7 +68,7 @@ public class Seller extends User{
     /**
      * add new sell message
      * @param sellNo the number of book selling message
-     * @param sellerId the id of seller
+     * @param sellerNo the id of seller
      * @param bookName book name
      * @param bookType book type
      * @param bookPress book publishing house
@@ -80,16 +80,17 @@ public class Seller extends User{
      * @param sellContact the contact of seller
      * @return rowSet
      */
-    public CachedRowSetImpl addSellMessage(int sellNo, int sellerId, String bookName, BookType bookType, String bookPress, String bookAuthor,
-                               Date bookPressTime, Date messagePressTime, double expectedPrice, String bookDetail, String sellContact){
+    public CachedRowSetImpl addSellMessage(int sellNo, int sellerNo, String bookName, BookType bookType, String bookPress, String bookAuthor,
+                                           Date bookPressTime, Date messagePressTime, double expectedPrice, String bookDetail, String sellContact){
         try{
             //link database
             Jdbcs linkDatabase =new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //insert new sell message
-            linkDatabase.res= linkDatabase.statement.executeQuery("insert into sale values("+sellNo+","+sellerId+
+            linkDatabase.statement.executeUpdate("insert into sale values("+sellNo+","+ sellerNo +
                     ",'"+bookName+"','"+bookType.toString()+"','"+bookPress+"','"+bookAuthor+"',"+bookPressTime+","
                     +messagePressTime+","+expectedPrice+",'"+bookDetail+"','"+sellContact+"')");
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale where sellerNo="+ sellerNo);
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -104,16 +105,16 @@ public class Seller extends User{
 
     /**
      * check seller's book selling message
-     * @param sellerId seller's id
+     * @param sellerNo seller's id
      * @return rowSet
      */
-    public CachedRowSetImpl checkMySellMessage(int sellerId){
+    public CachedRowSetImpl checkMySellMessage(int sellerNo){
         try {
             //link database
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //check seller's selling message from sale list
-            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale where sellerId="+sellerId);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale where sellerNo="+sellerNo);
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -129,15 +130,17 @@ public class Seller extends User{
     /**
      * delete seller's selling message
      * @param sellNo the number of selling message
+     * @param sellerNo the id of seller
      * @return rowSet
      */
-    public CachedRowSetImpl deleteMySellMessage(int sellNo){
+    public CachedRowSetImpl deleteMySellMessage(int sellNo,int sellerNo){
         try {
             //link database
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
-            //check seller's selling message from sale list
-            linkDatabase.res=linkDatabase.statement.executeQuery("delete from sale where sellNo="+sellNo);
+            //delete seller's selling message from sale list
+            linkDatabase.statement.executeUpdate("delete from sale where sellNo="+sellNo);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale where sellerNo="+sellerNo);
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close

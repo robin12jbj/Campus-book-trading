@@ -68,8 +68,9 @@ public class Administrator {
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //update user list
-            linkDatabase.res=linkDatabase.statement.executeQuery("update user set userName='"+userName+"',userSex='"
+            linkDatabase.statement.executeUpdate("update user set userName='"+userName+"',userSex='"
                     +userSex+"',userContact='"+userContact+"'where userId="+userId);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from user");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -93,7 +94,8 @@ public class Administrator {
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //delete user's message from user list
-            linkDatabase.res=linkDatabase.statement.executeQuery("delete from user where userId="+userId);
+            linkDatabase.statement.executeUpdate("delete from user where userId="+userId);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from user");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -109,7 +111,7 @@ public class Administrator {
     /**
      * update buying message
      * @param buyNo the number of buying message
-     * @param buyerId buyer's id
+     * @param buyerNo buyer's id
      * @param bookName book name
      * @param bookType book type
      * @param bookPress book publishing house
@@ -121,7 +123,7 @@ public class Administrator {
      * @param buyContact the contact of buyer
      * @return rowSet
      */
-    public CachedRowSetImpl updateBuyMessage(int buyNo, int buyerId, String bookName, BookType bookType, String bookPress,
+    public CachedRowSetImpl updateBuyMessage(int buyNo, int buyerNo, String bookName, BookType bookType, String bookPress,
                                              String bookAuthor, Date bookPressTime, Date messagePressTime, double expectedPrice,
                                              String bookDetail, String buyContact){
         try {
@@ -129,10 +131,11 @@ public class Administrator {
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //update buying message
-            linkDatabase.res=linkDatabase.statement.executeQuery("update need set buyerId="+buyerId+",bookName='"
-                    +bookName+"',bookType='"+bookType.toString()+"',bookPress='"+bookPress+"',bookAuthor='"+bookAuthor+"',bookPressTime="
-                    +bookPressTime+",messagePressTime="+messagePressTime+"expectedPrice="+expectedPrice+",bookDetail='"+bookDetail+
-                    "',buyContact='"+buyContact+"' where buyNo="+buyNo);
+            linkDatabase.statement.executeUpdate("update need set buyerNo="+buyerNo+",bookName='"
+                    +bookName+"',bookType='"+bookType.toString()+"',bookPress='"+bookPress+"',bookAuthor='"+bookAuthor+"',bookPressTime='"
+                    +bookPressTime.toString()+"',messagePressTime='"+messagePressTime.toString()+"',expectedPrice="+expectedPrice+",bookDetail='"
+                    +bookDetail+"',buyContact='"+buyContact+"' where buyNo="+buyNo);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from need");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -155,7 +158,8 @@ public class Administrator {
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //check seller's selling message from sale list
-            linkDatabase.res=linkDatabase.statement.executeQuery("delete from need where buyNo="+buyNo);
+            linkDatabase.statement.executeUpdate("delete from need where buyNo="+buyNo);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from need");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -170,7 +174,7 @@ public class Administrator {
     /**
      * update selling message
      * @param sellNo the number of buying message
-     * @param sellerId buyer's id
+     * @param sellerNo buyer's id
      * @param bookName book name
      * @param bookType book type
      * @param bookPress book publishing house
@@ -179,21 +183,22 @@ public class Administrator {
      * @param messagePressTime message press time
      * @param expectedPrice expected price
      * @param bookDetail detail
-     * @param buyContact the contact of buyer
+     * @param sellContact the contact of buyer
      * @return rowSet
      */
-    public CachedRowSetImpl updateSellMessage(int sellNo, int sellerId, String bookName, BookType bookType, String bookPress,
+    public CachedRowSetImpl updateSellMessage(int sellNo, int sellerNo, String bookName, BookType bookType, String bookPress,
                                              String bookAuthor, Date bookPressTime, Date messagePressTime, double expectedPrice,
-                                             String bookDetail, String buyContact){
+                                             String bookDetail, String sellContact){
         try {
             //link database
             Jdbcs linkDatabase = new Jdbcs();
             rowSet=new CachedRowSetImpl();
             //update buying message
-            linkDatabase.res=linkDatabase.statement.executeQuery("update sale set buyerId="+sellerId+",bookName='"
-                    +bookName+"',bookType='"+bookType.toString()+"',bookPress='"+bookPress+"',bookAuthor='"+bookAuthor+"',bookPressTime="
-                    +bookPressTime+",messagePressTime="+messagePressTime+"expectedPrice="+expectedPrice+",bookDetail='"+bookDetail+
-                    "',buyContact='"+buyContact+"' where buyNo="+sellNo);
+            linkDatabase.statement.executeUpdate("update sale set sellerNo="+sellerNo+",bookName='"
+                    +bookName+"',bookType='"+bookType.toString()+"',bookPress='"+bookPress+"',bookAuthor='"+bookAuthor+"',bookPressTime='"
+                    +bookPressTime.toString()+"',messagePressTime='"+messagePressTime.toString()+"',expectedPrice="+expectedPrice+",bookDetail='"+bookDetail+
+                    "',sellContact='"+sellContact+"' where sellNo="+sellNo);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close
@@ -217,6 +222,56 @@ public class Administrator {
             rowSet=new CachedRowSetImpl();
             //check seller's selling message from sale list
             linkDatabase.res=linkDatabase.statement.executeQuery("delete from sale where sellNo="+sellNo);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale");
+            //full up rowSet
+            rowSet.populate(linkDatabase.res);
+            //link close
+            linkDatabase.res.close();
+            linkDatabase.statement.close();
+            linkDatabase.con.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowSet;
+    }
+
+    /**
+     * check user's feedback message
+     * @return rowSet
+     */
+    public CachedRowSetImpl checkFeedBack(){
+        try {
+            //link database
+            Jdbcs linkDatabase = new Jdbcs();
+            rowSet=new CachedRowSetImpl();
+            //check user's feedback message from feedback list
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from feedback");
+            //full up rowSet
+            rowSet.populate(linkDatabase.res);
+            //link close
+            linkDatabase.res.close();
+            linkDatabase.statement.close();
+            linkDatabase.con.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowSet;
+    }
+
+    /**
+     * answer user's feedback message
+     * @param feedbackId feedback message's Id
+     * @param answer administrator's answer
+     * @return rowSet
+     */
+    public CachedRowSetImpl feedbackAnswer(int feedbackId,String answer){
+        try {
+            //link database
+            Jdbcs linkDatabase = new Jdbcs();
+            rowSet=new CachedRowSetImpl();
+            //answer user's feedback message
+            linkDatabase.statement.executeUpdate("update feedback set Reply='"+answer+"' where FeedbackId="+feedbackId);
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from feedback");
             //full up rowSet
             rowSet.populate(linkDatabase.res);
             //link close

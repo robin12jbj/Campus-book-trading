@@ -1,5 +1,10 @@
 package entity;
 
+import com.sun.rowset.CachedRowSetImpl;
+import util.Jdbcs;
+
+import java.sql.SQLException;
+
 /**
  * @author Mike_hsj
  */
@@ -24,7 +29,10 @@ public class User {
      * the way to contact user
      */
     private String userContact;
-
+    /**
+     * deposit resultSet
+     */
+    private CachedRowSetImpl rowSet;
     /**
      *
      * @param userId user's id
@@ -40,7 +48,26 @@ public class User {
         this.userSex=userSex;
         this.userContact=userContact;
     }
-
+    public CachedRowSetImpl addFeedBack(int UserNumber,int AdministratorNumber,String feedbackInfo,boolean state){
+        try {
+            //link database
+            Jdbcs linkDatabase = new Jdbcs();
+            rowSet=new CachedRowSetImpl();
+            //check seller's selling message from sale list
+            linkDatabase.statement.executeUpdate("insert into Feedback values("+UserNumber+","+AdministratorNumber+
+                    ",'"+feedbackInfo+"',"+null+","+state+","+null+")");
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from Feedback where userId="+UserNumber);
+            //full up rowSet
+            rowSet.populate(linkDatabase.res);
+            //link close
+            linkDatabase.res.close();
+            linkDatabase.statement.close();
+            linkDatabase.con.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowSet;
+    }
     /**
      * get user's Id
      * @return userId
