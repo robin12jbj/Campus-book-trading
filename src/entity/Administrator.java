@@ -55,6 +55,50 @@ public class Administrator {
         return rowSet;
     }
     /**
+     * check selling message
+     * @return rowSet
+     */
+    public CachedRowSetImpl checkSell(){
+        try {
+            //link database
+            Jdbcs linkDatabase = new Jdbcs();
+            rowSet=new CachedRowSetImpl();
+            //check user list
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from sale");
+            //full up rowSet
+            rowSet.populate(linkDatabase.res);
+            //link close
+            linkDatabase.res.close();
+            linkDatabase.statement.close();
+            linkDatabase.con.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowSet;
+    }
+    /**
+     * check buying message
+     * @return rowSet
+     */
+    public CachedRowSetImpl checkBuy(){
+        try {
+            //link database
+            Jdbcs linkDatabase = new Jdbcs();
+            rowSet=new CachedRowSetImpl();
+            //check user list
+            linkDatabase.res=linkDatabase.statement.executeQuery("select * from need");
+            //full up rowSet
+            rowSet.populate(linkDatabase.res);
+            //link close
+            linkDatabase.res.close();
+            linkDatabase.statement.close();
+            linkDatabase.con.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowSet;
+    }
+    /**
      * update user's message
      * @param userId user's id
      * @param userName user's name
