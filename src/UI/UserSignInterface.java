@@ -10,8 +10,9 @@ import java.awt.event.ActionListener;
 
 public class UserSignInterface extends JFrame  implements ActionListener {
 	private final JPanel pan = new JPanel();
+	private ImageIcon ima;
     JTextField t1,t2,t3,t5,t7;
-    JLabel name,namelab,passlab,doublepasslab,sex,information;
+    JLabel background,name,namelab,passlab,doublepasslab,sex,information;
     JRadioButton boy,girl;
     JButton confirm,cancel;
     ButtonGroup buttonGroup=new ButtonGroup();
@@ -19,8 +20,11 @@ public class UserSignInterface extends JFrame  implements ActionListener {
 
 
     UserSignInterface(){
+    	pan.setBackground(Color.WHITE);
     	pan.setLayout(null);
         Font font = new Font("宋体", Font.BOLD, 15);
+        super.setTitle("学生注册");
+        
         //账号
         namelab=new JLabel("账号");
         t1=new JTextField(18);
@@ -93,10 +97,16 @@ public class UserSignInterface extends JFrame  implements ActionListener {
         confirm.setBounds(150,380,90,30);
         cancel.setBounds(280,380,90,30);
 
+        ima=new ImageIcon("./images/学生注册页面.png");//写入文件路径
+        background=new JLabel(ima);
+        background.setBackground(Color.WHITE);
+        pan.add(background);
+        background.setBounds(0,0,600,600);
+        
         //添加事件监听
         confirm.addActionListener(this);
         cancel.addActionListener(this);
-        this.add(pan);
+        getContentPane().add(pan);
         this.setSize(600, 600);
         this.setVisible(true);
         //关闭该窗体，应用程序不退出，继续显示登陆界面
