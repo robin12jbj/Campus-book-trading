@@ -49,6 +49,7 @@ public class UserMain extends JFrame implements ActionListener{
 		btn4.setOpaque(true);
 		btn4.setFont(f2);
 		btn4.setForeground(Color.black);
+		btn4.setBackground(Color.gray);
 		JButton btn5=new JButton("查询求购");
 		btn5.setBackground(Color.white);
 		JButton btn6=new JButton("发布售卖");
@@ -58,7 +59,7 @@ public class UserMain extends JFrame implements ActionListener{
 
 
 		//创建右部的显示面板
-		JPanel pan1=new JPanel();
+		pan1=new JPanel();
 		pan1.setBackground(Color.white);
 		pan1.setOpaque(true);
 		pan1.setLayout(null);
@@ -88,8 +89,9 @@ public class UserMain extends JFrame implements ActionListener{
 		pan1.add(button1);
 		pan1.add(text2);
 		pan1.setVisible(true);
+		
 		//创建右部的显示面板
-		JPanel pan2=new JPanel();
+		pan2=new JPanel();
 		pan2.setBackground(Color.white);
 		pan2.setOpaque(true);
 		pan2.setLayout(null);
@@ -146,7 +148,7 @@ public class UserMain extends JFrame implements ActionListener{
 		jpanel.add(btn21);
 
 		jpanel.add(pan1);
-		//this.add(pan2);
+		this.add(pan2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置关闭窗体结束应用程序
 		//设置窗体大小
 		setSize(800,440);
@@ -166,22 +168,27 @@ public class UserMain extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		int count=this.getContentPane().getComponentCount();//10个
+		//System.out.println(count);
 		if(e.getSource() == btn1)
-		{	System.out.println(1);
-
+		{	
+			System.out.println(1);
+			pan1.setVisible(true);
+			pan2.setVisible(false);
 		}
 		else if(e.getSource() == btn4)
 		{
-			this.getContentPane().repaint();
+			System.out.println(1);
+			pan1.setVisible(false);
+			pan2.setVisible(true);
+			/*//this.getContentPane().repaint();
 			System.out.println(1);
 			this.getContentPane().repaint();
 			for(int i=0;i<count;i++){
 				Object obj= this.getContentPane().getComponent(i);
 				if(obj instanceof JPanel){
-					((JPanel)obj).removeAll();
+					((JPanel)obj).removeAll();					
 				}
-			}
-
+			}*/
 
 		}
 	}
