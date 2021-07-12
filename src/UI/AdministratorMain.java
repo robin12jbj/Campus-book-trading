@@ -6,19 +6,18 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.event.*;
+import java.sql.*;
 
 
-public class AdministratorMain extends JFrame {
+public class AdministratorMain extends JFrame implements ActionListener {
 
-	private JPanel contentPane;
+	private JPanel pan1,pan2;
 	private JTable jt;
 	private JScrollPane jp;
-
-	//从数据库中取出信息
-	//rowData用来存放行数据
-	//columnNames存放列名
+	JButton btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn10,btn11;
+	Administrator administrator= new Administrator(LoginInterface.getAccountNumber(),LoginInterface.getPassWord());
+	ResultSet res;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,102 +34,250 @@ public class AdministratorMain extends JFrame {
 
 
 	public AdministratorMain() {
-		Administrator administrator= new Administrator(LoginInterface.getAccountNumber(),LoginInterface.getPassWord());
-		ResultSet res;
-
-		String[] columnName ={"账号","密码","真实姓名","性别","联系方式"};
-		Object[][] cellData={};
-		DefaultTableModel model=new DefaultTableModel(cellData, columnName);
-		jt = new JTable(model);
-		jp = new JScrollPane(jt);
-		String[] data=new String[5];
-		res=administrator.checkUser();
-		while (true){
-			try {
-				if(res.next()){
-					data[0]= String.valueOf(res.getInt(1));
-					data[1]=res.getString(2);
-					data[2]=res.getString(3);
-					data[3]=res.getString(4);
-					data[4]=res.getString(5);
-					model.addRow(data);
-				}
-				else break;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 568, 462);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setBounds(100, 100, 1000, 500);
+		pan1 = new JPanel();
+		pan1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(pan1);
+		pan1.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("校园图书二手交易系统后台管理");
 		lblNewLabel.setBounds(10, 10, 218, 15);
-		contentPane.add(lblNewLabel);
+		pan1.add(lblNewLabel);
+	
 
-		//初始化JTable
-		jp.setBounds(147, 90, 395, 243);
-		contentPane.add(jp);
+	    btn1 = new JButton("图书求购");
+		btn1.setBackground(Color.LIGHT_GRAY);
+		btn1.setBounds(26, 63, 93, 29);
+		pan1.add(btn1);
+		btn1.addActionListener(this);
 
-		JButton btnNewButton = new JButton("图书求购");
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
-		btnNewButton.setBounds(26, 63, 93, 29);
-		contentPane.add(btnNewButton);
+	    btn2 = new JButton("修改");
+		btn2.setBackground(Color.WHITE);
+		btn2.setBounds(26, 90, 93, 23);
+		pan1.add(btn2);
+		btn2.addActionListener(this);
 
-		JButton btnNewButton_1 = new JButton("修改");
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setBounds(26, 90, 93, 23);
-		contentPane.add(btnNewButton_1);
+		btn3 = new JButton("删除");
+		btn3.setBackground(Color.WHITE);
+		btn3.setBounds(26, 111, 93, 23);
+		pan1.add(btn3);
+		btn3.addActionListener(this);
 
-		JButton btnNewButton_2 = new JButton("删除");
-		btnNewButton_2.setBackground(Color.WHITE);
-		btnNewButton_2.setBounds(26, 111, 93, 23);
-		contentPane.add(btnNewButton_2);
+		btn4 = new JButton("图书售卖");
+		btn4.setBackground(Color.LIGHT_GRAY);
+		btn4.setBounds(26, 148, 93, 29);
+		pan1.add(btn4);
+		btn4.addActionListener(this);
 
-		JButton button = new JButton("图书售卖");
-		button.setBackground(Color.LIGHT_GRAY);
-		button.setBounds(26, 148, 93, 29);
-		contentPane.add(button);
+		btn5 = new JButton("修改");
+		btn5.setBackground(Color.WHITE);
+		btn5.setBounds(26, 175, 93, 23);
+		pan1.add(btn5);
+		btn5.addActionListener(this);
 
-		JButton button_1 = new JButton("修改");
-		button_1.setBackground(Color.WHITE);
-		button_1.setBounds(26, 175, 93, 23);
-		contentPane.add(button_1);
+		btn6 = new JButton("删除");
+		btn6.setBackground(Color.WHITE);
+		btn6.setBounds(26, 196, 93, 23);
+		pan1.add(btn6);
+		btn6.addActionListener(this);
 
-		JButton button_2 = new JButton("删除");
-		button_2.setBackground(Color.WHITE);
-		button_2.setBounds(26, 196, 93, 23);
-		contentPane.add(button_2);
+		btn7 = new JButton("用户管理");
+		btn7.setBackground(Color.LIGHT_GRAY);
+		btn7.setBounds(26, 244, 93, 29);
+		pan1.add(btn7);
+		btn7.addActionListener(this);
 
-		JButton button_3 = new JButton("用户管理");
-		button_3.setBackground(Color.LIGHT_GRAY);
-		button_3.setBounds(26, 244, 93, 29);
-		contentPane.add(button_3);
+		btn8 = new JButton("修改");
+		btn8.setBackground(Color.WHITE);
+		btn8.setBounds(26, 271, 93, 23);
+		pan1.add(btn8);
+		btn8.addActionListener(this);
 
-		JButton button_4 = new JButton("修改");
-		button_4.setBackground(Color.WHITE);
-		button_4.setBounds(26, 271, 93, 23);
-		contentPane.add(button_4);
+		btn9 = new JButton("删除");
+		btn9.setBackground(Color.WHITE);
+		btn9.setBounds(26, 292, 93, 23);
+		pan1.add(btn9);
+		btn9.addActionListener(this);
 
-		JButton button_5 = new JButton("删除");
-		button_5.setBackground(Color.WHITE);
-		button_5.setBounds(26, 292, 93, 23);
-		contentPane.add(button_5);
+		btn10 = new JButton("用户反馈");
+		btn10.setBackground(Color.LIGHT_GRAY);
+		btn10.setBounds(26, 325, 93, 29);
+		pan1.add(btn10);
+		btn10.addActionListener(this);
 
-		JButton button_6 = new JButton("反馈处理");
-		button_6.setBackground(Color.LIGHT_GRAY);
-		button_6.setBounds(26, 325, 93, 29);
-		contentPane.add(button_6);
+		btn11 = new JButton("反馈处理");
+		btn11.setBackground(Color.WHITE);
+		btn11.setBounds(26, 352, 93, 23);
+		pan1.add(btn11);
+		btn11.addActionListener(this);
+	}
 
-		JButton button_7 = new JButton("反馈处理");
-		button_7.setBackground(Color.WHITE);
-		button_7.setBounds(26, 352, 93, 23);
-		contentPane.add(button_7);
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btn1)
+		{	
+			System.out.println(1);		
+			//初始化JTable	
+			String[] columnName ={"求购编号","求购者账号","图书名称","图书类型","图书出版社","图书作者","出版日期","发布日期","预期求购价格","图书信息备注","求购者联系方式",};
+			Object[][] cellData={};
+			DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			jt = new JTable(model);
+			jp = new JScrollPane(jt);
+			String[] data=new String[11];
+			res=administrator.checkBuy();
+			while (true){
+				try {
+					if(res.next()){
+						data[0]= String.valueOf(res.getInt(1));
+						data[1]=String.valueOf(res.getFloat(2));
+						data[2]=res.getString(3);
+						data[3]=res.getString(4);
+						data[4]=res.getString(5);
+						data[5]=res.getString(6);
+						data[6]=String.valueOf(res.getDate(7));
+						data[7]=String.valueOf(res.getDate(8));
+						data[8]=res.getString(9);
+						data[9]=String.valueOf(res.getInt(10));
+						data[10]=res.getString(11);
+						model.addRow(data);
+					}
+					else break;
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			//String[] columnName ={"求购编号","求购者账号","图书名称","图书类型","图书出版社","图书作者","出版日期","发布日期","预期求购价格","图书信息备注","求购者联系方式",};
+			//Object[][] cellData={};
+			//DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			//jt = new JTable(model);
+			//jp = new JScrollPane(jt);
+			pan2=new JPanel();
+			pan2.setBounds(147,70,800,300);
+			jp.setBounds(0, 0, 800, 300);
+			pan2.add(jp);
+			pan1.add(pan2);
+		}
+		if(e.getSource() == btn4)
+		{	
+			System.out.println(1);		
+			//初始化JTable
+			String[] columnName ={"售卖编号","售卖者账号","图书名称","图书类型","图书出版社","图书作者","图书出版日期","售卖信息发布日期","售卖预期价格","图书相关信息","售卖者联系方式"};
+			Object[][] cellData={};
+			DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			jt = new JTable(model);
+			jp = new JScrollPane(jt);
+			String[] data=new String[11];
+			res=administrator.checkSell();
+			while (true){
+				try {
+					if(res.next()){
+						data[0]= String.valueOf(res.getInt(1));
+						data[1]=String.valueOf(res.getFloat(2));
+						data[2]=res.getString(3);
+						data[3]=res.getString(4);
+						data[4]=res.getString(5);
+						data[5]=res.getString(6);
+						data[6]=String.valueOf(res.getDate(7));
+						data[7]=String.valueOf(res.getDate(8));
+						data[8]=res.getString(9);
+						data[9]=String.valueOf(res.getInt(10));
+						data[10]=res.getString(11);
+						model.addRow(data);
+					}
+					else break;
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			//String[] columnName ={"售卖编号","售卖者账号","图书名称","图书类型","图书出版社","图书作者","图书出版日期","售卖信息发布日期","售卖预期价格","图书相关信息","售卖者联系方式"};
+			//Object[][] cellData={};
+			//DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			//jt = new JTable(model);
+			//jp = new JScrollPane(jt);
+			pan2=new JPanel();
+			pan2.setBounds(147,70,800,300);
+			jp.setBounds(0, 0, 800, 300);
+			pan2.add(jp);
+			pan1.add(pan2);
+		}
+		if(e.getSource() == btn7)
+		{	
+			System.out.println(1);
+			//初始化JTable
+			String[] columnName ={"账号","密码","真实姓名","性别","联系方式"};
+			Object[][] cellData={};
+			DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			jt = new JTable(model);
+			jp = new JScrollPane(jt);
+			String[] data=new String[5];
+			res=administrator.checkUser();
+			while (true){
+				try {
+					if(res.next()){
+						data[0]= String.valueOf(res.getInt(1));
+						data[1]=res.getString(2);
+						data[2]=res.getString(3);
+						data[3]=res.getString(4);
+						data[4]=res.getString(5);
+						model.addRow(data);
+					}
+					else break;
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			//String[] columnName ={"账号","密码","真实姓名","性别","联系方式"};
+			//Object[][] cellData={};
+			//DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			//jt = new JTable(model);
+			//jp = new JScrollPane(jt);
+			pan2=new JPanel();
+			pan2.setBounds(147,70,800,300);
+			jp.setBounds(0, 0, 800, 300);
+			pan2.add(jp);
+			pan1.add(pan2);
+		}
+		if(e.getSource() == btn10)
+		{	
+			System.out.println(1);
+			//初始化JTable
+			String[] columnName ={"反馈信息编号","管理员账号","用户反馈信息","管理员回复","处理状态","用户状态"};
+			Object[][] cellData={};
+			DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			jt = new JTable(model);
+			jp = new JScrollPane(jt);
+			String[] data=new String[6];
+			res=administrator.checkFeedBack();
+			while (true){
+				try {
+					if(res.next()){
+						data[0]= String.valueOf(res.getInt(1));
+						data[1]= String.valueOf(res.getInt(2));
+						data[2]=res.getString(3);
+						data[3]=res.getString(4);
+						data[4]=String.valueOf(res.getBoolean(5));
+						data[5]= String.valueOf(res.getInt(6));
+						model.addRow(data);
+					}
+					else break;
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			//String[] columnName ={"反馈信息编号","管理员账号","用户反馈信息","管理员回复","处理状态","用户状态"};
+			//Object[][] cellData={};
+			//DefaultTableModel model=new DefaultTableModel(cellData, columnName);
+			//jt = new JTable(model);
+			//jp = new JScrollPane(jt);
+			pan2=new JPanel();
+			pan2.setBounds(147,70,800,300);
+			jp.setBounds(0, 0, 800, 300);
+			pan2.add(jp);
+			pan1.add(pan2);
+		}
+		
 	}
 }
