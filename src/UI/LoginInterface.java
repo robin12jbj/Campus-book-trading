@@ -34,7 +34,7 @@ public class LoginInterface extends JFrame implements ActionListener {
         this.setSize(600, 500);
         this.setVisible(true);
         this.setIconImage(new ImageIcon("./images/book.png").getImage());
-        Font font = new Font("宋体", Font.BOLD, 15);
+        Font font = new Font("宋体", Font.BOLD, 20);
         this.setTitle("校园图书交易系统");
         //添加背景图片面板
         //添加主面板
@@ -54,7 +54,7 @@ public class LoginInterface extends JFrame implements ActionListener {
                 repaint();
             }
         }
-        ImagePanel bgpan=new ImagePanel(new Dimension(this.getWidth(),this.getHeight()),new ImageIcon("./images/book.png").getImage());
+        ImagePanel bgpan=new ImagePanel(new Dimension(this.getWidth(),this.getHeight()),new ImageIcon("./images/登录注册界面.png").getImage());
         this.setContentPane(bgpan);
         bgpan.setLayout(null);
         //pan2.setBounds(0,0,super.getWidth(),super.getHeight());
@@ -62,9 +62,9 @@ public class LoginInterface extends JFrame implements ActionListener {
         // lbBg.setBounds(0, 0,pan.getWidth(), pan.getHeight());
         //pan.add(lbBg);
         //最精准的布局模式空布局
-        title.setFont(new Font("宋体",Font.BOLD,20));
-        bgpan.add(title);
-        title.setBounds(190,10,200,80);
+        //title.setFont(new Font("宋体",Font.BOLD,20));
+        //bgpan.add(title);
+        //title.setBounds(190,10,200,80);
 
         this.getContentPane().add(namelab);
         this.getContentPane().add(nametext);
@@ -73,23 +73,24 @@ public class LoginInterface extends JFrame implements ActionListener {
         this.getContentPane().add(denglu);
         this.getContentPane().add(zhuce);
         this.getContentPane().add(button);
-        namelab.setBounds(140, 100, 60, 30);
-        nametext.setBounds(240, 100, 140, 30);
-        passlab.setBounds(140, 180, 60, 30);
-        passtext.setBounds(240, 180, 140, 30);
-        denglu.setBounds(150, 240, 90, 20);
+        namelab.setBounds(140, 150, 80, 30);
+        nametext.setBounds(240, 150, 140, 30);
+        passlab.setBounds(140, 200, 60, 30);
+        passtext.setBounds(240, 200, 140, 30);
+        denglu.setBounds(150, 260, 90, 20);
         //denglu.setContentAreaFilled(false);
         //zhuce.setContentAreaFilled(false);
         //denglu.setBorderPainted(false);
         //zhuce.setBorderPainted(false);
-        zhuce.setBounds(280, 240, 90, 20);
-        button.setBounds(200, 280, 150, 30);
+        zhuce.setBounds(280, 260, 90, 20);
+        button.setBounds(225, 300, 150, 30);
         button.setContentAreaFilled(false);
         nametext.setFont(font);
         passtext.setFont(font);
         namelab.setFont(font);
         passlab.setFont(font);
         zhuce.setFont(font);
+        denglu.setFont(font);
         zhuce.addActionListener(this);
         denglu.addActionListener(this);
         //设置关闭进程，退出应用程序

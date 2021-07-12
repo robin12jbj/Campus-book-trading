@@ -100,6 +100,7 @@ public class UserMain extends JFrame implements ActionListener{
 		JLabel label2=new JLabel("卖家信息");
 		label2.setBackground(Color.pink);
 		label2.setOpaque(true);
+
 		Font f4 = new Font("黑体",Font.PLAIN,15);
 		label2.setFont(f4);
 		label2.setForeground(Color.black);
@@ -113,8 +114,9 @@ public class UserMain extends JFrame implements ActionListener{
 		button1.setBounds(250, 40, 80, 25);
 
 		JTextArea text4=new JTextArea("表格");
-		text3.setBounds(0, 80, 550, 220);
-		text3.setBackground(Color.pink);
+		text4.setBounds(0, 80, 550, 220);
+		text4.setBackground(Color.pink);
+
 
 		pan2.add(label2);
 		pan2.add(text3);
@@ -148,7 +150,9 @@ public class UserMain extends JFrame implements ActionListener{
 		jpanel.add(btn21);
 
 		jpanel.add(pan1);
-		this.add(pan2);
+		jpanel.add(pan2);
+		pan2.setVisible(false);
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置关闭窗体结束应用程序
 		//设置窗体大小
 		setSize(800,440);
@@ -156,6 +160,7 @@ public class UserMain extends JFrame implements ActionListener{
 		setVisible(true);
 		btn1.addActionListener(this);
 		btn4.addActionListener(this);
+
 	}
 
 	public static void main(String[] args) {
