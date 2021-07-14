@@ -41,11 +41,6 @@ public class UserMain extends JFrame implements ActionListener {
     //btn1-10代表左侧10个按钮
     ButtonGroup buttonGroup;
     JRadioButton j1, j2, j3, j4;
-    //j1:书名按钮;j2:类型按钮
-    //j3:出版社按钮;j4:作者按钮
-    JLabel aimId;
-    JLabel aimUserId;
-    //Administrator administrator;
     User user;
     Buyer buyer;
     Seller seller;
@@ -58,8 +53,8 @@ public class UserMain extends JFrame implements ActionListener {
     //6个标签对应"年","月","日"
     //15个标签，12个文本框，1个选择框
     JTextArea answer;//answer为用户反馈界面文本区域
-    JLabel[] lab = new JLabel[11];//
-    JLabel[] lab2 = new JLabel[4];
+    //JLabel[] lab = new JLabel[11];//
+    //JLabel[] lab2 = new JLabel[4];
     //11个标签代表求购、售卖修改界面左侧标签,lab3->用户管理界面中，修改标签，
     JComboBox type;
     private JPanel pan2, pan3;
@@ -179,21 +174,12 @@ public class UserMain extends JFrame implements ActionListener {
         btn11.addActionListener(this);*/
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new usermaintest();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn1)//用户的买家信息,个人求购表,已完成
         {
-
+            //j1:书名按钮;j2:类型按钮
+            //j3:出版社按钮;j4:作者按钮
             //初始化JTable
             pan2 = new JPanel();
             String[] columnName = {"求购编号", "求购者账号", "图书名称", "图书类型", "图书出版社", "图书作者", "图书出版日期", "求购信息发布日期", "预期价格", "备注", "求购者联系方式"};

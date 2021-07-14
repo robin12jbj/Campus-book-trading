@@ -16,11 +16,6 @@ import java.awt.event.ActionListener;
  * 2019年06月11日 11:27:00
  */
 public class LoginInterface extends JFrame implements ActionListener {
-    //private final JPanel pan = new JPanel();
-    private final JLabel title = new JLabel("校园图书交易系统");
-    private final JPanel pan2 = new JPanel();
-    private final JLabel namelab = new JLabel("用 户 名：");
-    private final JLabel passlab = new JLabel("密    码：");
     private final JTextField nametext = new JTextField("", 10);
     private final JPasswordField passtext = new JPasswordField("", 10);
     private final JRadioButton button = new JRadioButton("管理员登录/注册");
@@ -36,10 +31,9 @@ public class LoginInterface extends JFrame implements ActionListener {
         this.setTitle("校园图书交易系统");
         //添加背景图片面板
         //添加主面板
-        //this.add(pan);
         class ImagePanel extends JPanel {
-            Dimension d;
-            Image image;
+            private final Dimension d;
+            private final Image image;
 
             public ImagePanel(Dimension d, Image image) {
                 super();
@@ -57,17 +51,12 @@ public class LoginInterface extends JFrame implements ActionListener {
         ImagePanel bgpan = new ImagePanel(new Dimension(this.getWidth(), this.getHeight()), new ImageIcon("./images/登录注册界面.png").getImage());
         this.setContentPane(bgpan);
         bgpan.setLayout(null);
-        //pan2.setBounds(0,0,super.getWidth(),super.getHeight());
-        // JLabel lbBg = new JLabel(new ImageIcon("./images/book.png"));
-        // lbBg.setBounds(0, 0,pan.getWidth(), pan.getHeight());
-        //pan.add(lbBg);
         //最精准的布局模式空布局
-        //title.setFont(new Font("宋体",Font.BOLD,20));
-        //bgpan.add(title);
-        //title.setBounds(190,10,200,80);
-
+        //private final JPanel pan = new JPanel();
+        JLabel namelab = new JLabel("用 户 名：");
         this.getContentPane().add(namelab);
         this.getContentPane().add(nametext);
+        JLabel passlab = new JLabel("密    码：");
         this.getContentPane().add(passlab);
         this.getContentPane().add(passtext);
         this.getContentPane().add(denglu);
@@ -78,10 +67,6 @@ public class LoginInterface extends JFrame implements ActionListener {
         passlab.setBounds(140, 200, 120, 30);
         passtext.setBounds(240, 200, 140, 30);
         denglu.setBounds(150, 260, 90, 30);
-        //denglu.setContentAreaFilled(false);
-        //zhuce.setContentAreaFilled(false);
-        //denglu.setBorderPainted(false);
-        //zhuce.setBorderPainted(false);
         zhuce.setBounds(280, 260, 90, 30);
         button.setBounds(225, 300, 150, 30);
         button.setContentAreaFilled(false);
@@ -116,7 +101,6 @@ public class LoginInterface extends JFrame implements ActionListener {
                 denglu(Integer.parseInt(nametext.getText()), String.valueOf(passtext.getPassword()));
             } catch (Exception q) {
                 //没有输入账号密码，提示输入
-                System.out.println(q.toString());
                 JOptionPane.showMessageDialog(null, "请输入账号密码！");
             }
         } else if (e.getSource() == zhuce) {

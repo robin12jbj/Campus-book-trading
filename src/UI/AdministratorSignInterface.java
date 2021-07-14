@@ -79,12 +79,6 @@ public class AdministratorSignInterface extends JFrame implements ActionListener
         cancel.addActionListener(this);
     }
 
-    public static void main(String[] args) {
-
-        new AdministratorSignInterface();
-    }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirm) {

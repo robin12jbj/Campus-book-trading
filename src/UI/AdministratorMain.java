@@ -34,14 +34,10 @@ public class AdministratorMain extends JFrame implements ActionListener {
     JLabel[] lab3 = new JLabel[4];
     //11个标签代表求购、售卖修改界面左侧标签,lab->求购，lab2->售卖,lab3->用户管理界面中，修改标签，
     JComboBox type;
-    //private final JLabel background;
-    private JPanel pan2, pan3;
-    private ImagePanel pan1;
-    private JTable jt;
-    private JScrollPane jp;
-    private ImageIcon ima;
-    private JLabel imagelabel;
 
+    private JPanel pan2;
+    private final ImagePanel pan1;
+    private JTable jt;
 
     public AdministratorMain(int AccountNumber, String Password) {
         setResizable(false);
@@ -128,19 +124,10 @@ public class AdministratorMain extends JFrame implements ActionListener {
         btn11.addActionListener(this);
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                AdministratorMain frame = new AdministratorMain(1, "1");
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JScrollPane jp;
         if (e.getSource() == btn1)//图书求购显示，完成
         {
             //初始化JTable
@@ -185,6 +172,7 @@ public class AdministratorMain extends JFrame implements ActionListener {
 
 
         }
+        JPanel pan3;
         if (e.getSource() == btn2)//图书求购修改，完成
         {
             pan3 = new JPanel();
@@ -244,9 +232,12 @@ public class AdministratorMain extends JFrame implements ActionListener {
                 parseException.printStackTrace();
             }
             try {
+
+                assert sqlDate1 != null;
                 administrator.updateBuyMessage(Integer.parseInt(text[0].getText()), Integer.parseInt(text[1].getText()), text[2].getText(),
-                        BookType.valueOf(type.getSelectedItem().toString()), text[4].getText(), text[5].getText(), sqlDate1,
+                            BookType.valueOf(type.getSelectedItem().toString()), text[4].getText(), text[5].getText(), sqlDate1,
                         sqlDate2, Double.parseDouble(text[8].getText()), text[9].getText(), text[10].getText());
+
                 JOptionPane.showMessageDialog(null, "更改成功！");
                 pan1.remove(pan2);
             } catch (NumberFormatException e1) {
@@ -262,8 +253,7 @@ public class AdministratorMain extends JFrame implements ActionListener {
             {
                 administrator.deleteBuyMessage(Integer.parseInt(jt.getValueAt(jt.getSelectedRow(), 0).toString()));
             }
-            //if(a==1) System.out.println(1);//否
-            //if(a==2)  System.out.println(2);//取消
+
 
         }
 
@@ -344,7 +334,8 @@ public class AdministratorMain extends JFrame implements ActionListener {
                 pan3.add(text[i]);
                 pan3.add(lab2[i]);
             }
-            int index1 = jt.getSelectedRow();//获取选中的行
+            int index1;//获取选中的行
+            index1 = jt.getSelectedRow();
             for (int i = 0; i < 11; i++) {
                 text[i].setText(jt.getValueAt(index1, i).toString());
                 text[i].setBounds(180, 4 + 30 * i, 100, 20);
@@ -370,6 +361,7 @@ public class AdministratorMain extends JFrame implements ActionListener {
                 parseException.printStackTrace();
             }
             try {
+                assert sqlDate2 != null;
                 administrator.updateSellMessage(Integer.parseInt(text[0].getText()), Integer.parseInt(text[1].getText()), text[2].getText(),
                         BookType.valueOf(type.getSelectedItem().toString()), text[4].getText(), text[5].getText(), sqlDate1,
                         sqlDate2, Double.parseDouble(text[8].getText()), text[9].getText(), text[10].getText());
@@ -410,13 +402,6 @@ public class AdministratorMain extends JFrame implements ActionListener {
                         data[2] = res.getString(3);
                         data[3] = res.getString(4);
                         data[4] = res.getString(5);
-						/*
-						data[5] = res.getString(6);
-						data[6] = String.valueOf(res.getDate(7));
-						data[7] = String.valueOf(res.getDate(8));
-						data[8] = res.getString(9);
-						data[9] = String.valueOf(res.getString(10));
-						data[10] = res.getString(11);*/
                         model.addRow(data);
                     } else break;
                 } catch (SQLException e1) {
@@ -517,13 +502,6 @@ public class AdministratorMain extends JFrame implements ActionListener {
                         data[3] = res.getString(6);
                         data[4] = res.getString(5);
                         data[5] = res.getString(4);
-						/*
-						data[5] = res.getString(6);
-						data[6] = String.valueOf(res.getDate(7));
-						data[7] = String.valueOf(res.getDate(8));
-						data[8] = res.getString(9);
-						data[9] = String.valueOf(res.getString(10));
-						data[10] = res.getString(11);*/
                         model.addRow(data);
                     } else break;
                 } catch (SQLException e1) {
@@ -543,7 +521,7 @@ public class AdministratorMain extends JFrame implements ActionListener {
             pan1.add(pan2);
             pan1.revalidate();
         }
-        if (e.getSource() == btn11)//反馈回复，事件未完成
+        if (e.getSource() == btn11)//反馈回复，事件完成
         {
             aimId = new JLabel("反馈信息编号:");
             aimUserId = new JLabel("反馈用户账号:");
@@ -560,34 +538,14 @@ public class AdministratorMain extends JFrame implements ActionListener {
             pan3 = new JPanel();
             pan3.setBounds(147, 90, 700, 330);
             pan3.setLayout(null);
-            //button3 = new JButton("提交");
-            //pan3.add(button3);
-            //button3.addActionListener(this);
-            //button3.setBounds(360, 130, 60, 20);
             pan2.setVisible(false);
             //jp.setVisible(false);
             pan1.revalidate();
             //lab3[0] = new JLabel("用户账号");
             //lab3[1] = new JLabel("用户姓名");
             //[2] = new JLabel("用户性别");
-            //lab3[3] = new JLabel("联系方式");
-			/*lab3[4] = new JLabel("图书出版社");
-			lab2[5] = new JLabel("图书作者");
-			lab2[6] = new JLabel("出版日期");
-			lab2[7] = new JLabel("发布日期");
-			lab2[8] = new JLabel("预期售卖价格");
-			lab2[9] = new JLabel("图书信息备注");
-			lab2[10] = new JLabel("售卖者联系方式");*/
-            //type.setBounds(180, 94, 100, 20);
-            //type.setSelectedItem(jt.getValueAt(jt.getSelectedRow(), 3));
-            //pan3.add(type);
 
-				/*for (int i = 0; i < 4; i++) {
-					text2[i] = new JTextField("", 30);
-					pan3.add(text2[i]);
-					pan3.add(lab3[i]);
-				}*/
-            int index1 = jt.getSelectedRow();//获取选中的行
+            //获取选中的行
             pan3.add(titlelabel);
             pan3.add(aimId);
             pan3.add(aimUserId);
@@ -601,14 +559,7 @@ public class AdministratorMain extends JFrame implements ActionListener {
             titlelabel.setFont(new Font("宋体", Font.BOLD, 24));
             answer.setBounds(180, 70, 400, 200);
             answer.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-				/*for (int i = 0; i < 4; i++) {
-
-					text2[i].setText(jt.getValueAt(index1, i+1).toString());
-					text2[i].setBounds(180, 4 + 30 * i, 100, 20);
-					lab3[i].setBounds(50, 4 + 30 * i, 100, 20);
-				}*/
             pan1.remove(pan2);
-            //pan3.remove(text2[3]);
             pan1.add(pan3);
             pan3.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.blue));
             pan3.repaint();
@@ -634,7 +585,7 @@ public class AdministratorMain extends JFrame implements ActionListener {
         pan1.revalidate();
     }
 
-    class ImagePanel extends JPanel {
+    static class ImagePanel extends JPanel {
         Dimension d;
         Image image;
 
