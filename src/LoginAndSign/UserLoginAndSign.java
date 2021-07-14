@@ -5,35 +5,37 @@ import util.Jdbcs;
 import javax.swing.*;
 import java.sql.SQLException;
 
-public class UserLoginAndSign extends Jdbcs{
-    public UserLoginAndSign(){
-    super();
+public class UserLoginAndSign extends Jdbcs {
+    public UserLoginAndSign() {
+        super();
     }
-    public boolean Sign(int AccountNumber,String Password,String Name,String Sex,String Tel ){
-        boolean f=false;
-    String sql="insert into user values("+AccountNumber+",'"+Password+"','"+Name+"','"+Sex+"','"+Tel+"')";
+
+    public boolean Sign(int AccountNumber, String Password, String Name, String Sex, String Tel) {
+        boolean f = false;
+        String sql = "insert into user values(" + AccountNumber + ",'" + Password + "','" + Name + "','" + Sex + "','" + Tel + "')";
         try {
             int a = statement.executeUpdate(sql);
             if (a == 1) {
                 JOptionPane.showMessageDialog(null, "注册成功！");
-                f=true;
+                f = true;
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "对不起该用户账号已被占用！请重新输入！");
             e.printStackTrace();
         }
         //不管执行成功与否，都进行关闭数据库连接操作
-        try{
+        try {
 
             statement.close();
             con.close();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "关闭数据库出现异常！");
         }
-        return  f;
+        return f;
     }
-    public boolean Login(int AccountNumber,String Password){
-    boolean f=false;
+
+    public boolean Login(int AccountNumber, String Password) {
+        boolean f = false;
         String sql = "select * from user where UserId=" + AccountNumber;
         try {
             res = statement.executeQuery(sql);
@@ -51,16 +53,14 @@ public class UserLoginAndSign extends Jdbcs{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try{
+        try {
             res.close();
             statement.close();
             con.close();
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "关闭数据库出现异常！");
         }
-
-
         return f;
     }
 }

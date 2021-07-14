@@ -40,30 +40,30 @@ public class Book {
     private String bookDetail;
 
     /**
-     *
-     * @param bookName book name
-     * @param bookType book type
-     * @param bookPress book publishing house
-     * @param bookAuthor book author
-     * @param bookPressTime book publishing time
+     * @param bookName         book name
+     * @param bookType         book type
+     * @param bookPress        book publishing house
+     * @param bookAuthor       book author
+     * @param bookPressTime    book publishing time
      * @param messagePressTime message press time
-     * @param expectedPrice expected price
-     * @param bookDetail detail
+     * @param expectedPrice    expected price
+     * @param bookDetail       detail
      */
-    public Book(String bookName,BookType bookType,String bookPress,String bookAuthor,
-         Date bookPressTime, Date messagePressTime,double expectedPrice,String bookDetail){
-        this.bookName=bookName;
-        this.bookType=bookType;
-        this.bookPress=bookPress;
-        this.bookAuthor=bookAuthor;
-        this.bookPressTime=bookPressTime;
-        this.messagePressTime=messagePressTime;
-        this.expectedPrice=expectedPrice;
-        this.bookDetail=bookDetail;
+    public Book(String bookName, BookType bookType, String bookPress, String bookAuthor,
+                Date bookPressTime, Date messagePressTime, double expectedPrice, String bookDetail) {
+        this.bookName = bookName;
+        this.bookType = bookType;
+        this.bookPress = bookPress;
+        this.bookAuthor = bookAuthor;
+        this.bookPressTime = bookPressTime;
+        this.messagePressTime = messagePressTime;
+        this.expectedPrice = expectedPrice;
+        this.bookDetail = bookDetail;
     }
 
     /**
      * get book's name
+     *
      * @return bookName
      */
     public String getBookName() {
@@ -71,7 +71,8 @@ public class Book {
     }
 
     /**
-     *set book's name
+     * set book's name
+     *
      * @param bookName book's name
      */
     public void setBookName(String bookName) {
@@ -80,6 +81,7 @@ public class Book {
 
     /**
      * get book's type
+     *
      * @return bookType
      */
     public BookType getBookType() {
@@ -88,6 +90,7 @@ public class Book {
 
     /**
      * set book's type
+     *
      * @param bookType book's type
      */
     public void setBookType(BookType bookType) {
@@ -96,6 +99,7 @@ public class Book {
 
     /**
      * get book publishing house
+     *
      * @return bookPress
      */
     public String getBookPress() {
@@ -104,6 +108,7 @@ public class Book {
 
     /**
      * set book publishing house
+     *
      * @param bookPress book publishing house
      */
     public void setBookPress(String bookPress) {
@@ -112,6 +117,7 @@ public class Book {
 
     /**
      * get book's author
+     *
      * @return bookAuthor
      */
     public String getBookAuthor() {
@@ -120,6 +126,7 @@ public class Book {
 
     /**
      * set book's author
+     *
      * @param bookAuthor book's author
      */
     public void setBookAuthor(String bookAuthor) {
@@ -128,6 +135,7 @@ public class Book {
 
     /**
      * get book publishing time
+     *
      * @return bookPressTime
      */
     public Date getBookPressTime() {
@@ -136,6 +144,7 @@ public class Book {
 
     /**
      * set book publishing time
+     *
      * @param bookPressTime book publishing time
      */
     public void setBookPressTime(Date bookPressTime) {
@@ -144,6 +153,7 @@ public class Book {
 
     /**
      * get message press time
+     *
      * @return messagePressTime
      */
     public Date getMessagePressTime() {
@@ -152,6 +162,7 @@ public class Book {
 
     /**
      * set message press time
+     *
      * @param messagePressTime message press time
      */
     public void setMessagePressTime(Date messagePressTime) {
@@ -160,6 +171,7 @@ public class Book {
 
     /**
      * get expected price
+     *
      * @return expectedPrice
      */
     public double getExpectedPrice() {
@@ -168,6 +180,7 @@ public class Book {
 
     /**
      * set expected price
+     *
      * @param expectedPrice expected price
      */
     public void setExpectedPrice(double expectedPrice) {

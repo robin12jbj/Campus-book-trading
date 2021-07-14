@@ -17,17 +17,15 @@ import java.awt.event.ActionListener;
  */
 public class LoginInterface extends JFrame implements ActionListener {
     //private final JPanel pan = new JPanel();
-    private final JLabel title=new JLabel("校园图书交易系统");
-    private final JPanel pan2=new JPanel();
+    private final JLabel title = new JLabel("校园图书交易系统");
+    private final JPanel pan2 = new JPanel();
     private final JLabel namelab = new JLabel("用 户 名：");
     private final JLabel passlab = new JLabel("密    码：");
-    private final JTextField nametext = new JTextField();
-    private final JPasswordField passtext = new JPasswordField();
+    private final JTextField nametext = new JTextField("", 10);
+    private final JPasswordField passtext = new JPasswordField("", 10);
+    private final JRadioButton button = new JRadioButton("管理员登录/注册");
     public JButton denglu = new JButton("登录");
     public JButton zhuce = new JButton("注册");
-    private final JRadioButton button = new JRadioButton("管理员登录/注册");
-    private static int accountNumber;
-    private static String passWord;
 
 
     public LoginInterface() {
@@ -42,11 +40,13 @@ public class LoginInterface extends JFrame implements ActionListener {
         class ImagePanel extends JPanel {
             Dimension d;
             Image image;
+
             public ImagePanel(Dimension d, Image image) {
                 super();
                 this.d = d;
                 this.image = image;
             }
+
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -54,7 +54,7 @@ public class LoginInterface extends JFrame implements ActionListener {
                 repaint();
             }
         }
-        ImagePanel bgpan=new ImagePanel(new Dimension(this.getWidth(),this.getHeight()),new ImageIcon("./images/登录注册界面.png").getImage());
+        ImagePanel bgpan = new ImagePanel(new Dimension(this.getWidth(), this.getHeight()), new ImageIcon("./images/登录注册界面.png").getImage());
         this.setContentPane(bgpan);
         bgpan.setLayout(null);
         //pan2.setBounds(0,0,super.getWidth(),super.getHeight());
@@ -105,14 +105,6 @@ public class LoginInterface extends JFrame implements ActionListener {
         new LoginInterface();
     }
 
-    public static int getAccountNumber() {
-        return accountNumber;
-    }
-
-    public static String getPassWord() {
-        return passWord;
-    }
-
 
     /**
      * Invoked when an action occurs
@@ -120,21 +112,20 @@ public class LoginInterface extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == denglu) {
-
             try {
                 denglu(Integer.parseInt(nametext.getText()), String.valueOf(passtext.getPassword()));
             } catch (Exception q) {
                 //没有输入账号密码，提示输入
+                System.out.println(q.toString());
                 JOptionPane.showMessageDialog(null, "请输入账号密码！");
             }
         } else if (e.getSource() == zhuce) {
-           //注册按钮，开启用户注册或管理员注册页面
-                if(button.isSelected()){
-                    new AdministratorSignInterface();
-                }
-                else{
-                    new UserSignInterface();
-                }
+            //注册按钮，开启用户注册或管理员注册页面
+            if (button.isSelected()) {
+                new AdministratorSignInterface();
+            } else {
+                new UserSignInterface();
+            }
         }
     }
 
@@ -145,21 +136,21 @@ public class LoginInterface extends JFrame implements ActionListener {
 
         if (button.isSelected()) {
             //选中管理员登录按钮
-            if (new AdministratorLoginAndSign().Login(AccountNumber,Password)) {
+            if (new AdministratorLoginAndSign().Login(AccountNumber, Password)) {
                 //管理员账号密码正确,登录管理员界面
-                //账号密码不正确的提示在Login函数中，无需继续添加提示
-                new AdministratorMain();
-                accountNumber=AccountNumber;
-                passWord=Password;
+                //账号密码不正确的提示在Login函数中，
+
+                new AdministratorMain(AccountNumber, Password);
+
                 this.dispose();
             }
         } else {
             //以用户身份登录
-            if (new UserLoginAndSign().Login(AccountNumber,Password)) {
+            if (new UserLoginAndSign().Login(AccountNumber, Password)) {
                 //用户账号密码正确，登录用户界面
                 //账号密码不正确的提示在Login函数中，无需继续添加提示
+                new UserMain(AccountNumber, Password);
 
-                new UserMain();
                 this.dispose();
 
             }
@@ -167,7 +158,6 @@ public class LoginInterface extends JFrame implements ActionListener {
 
 
     }
-
 
 
 }

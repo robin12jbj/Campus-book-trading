@@ -1,5 +1,7 @@
 package util;
+
 import java.sql.*;
+
 public class Jdbcs {
     public Connection con = null;
     public Statement statement = null;
@@ -8,7 +10,6 @@ public class Jdbcs {
     String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
     String name = "root";
     String passwd = "123456";
-
 
 
     public Jdbcs() {

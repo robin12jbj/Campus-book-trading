@@ -16,17 +16,17 @@ public class AdministratorLoginAndSign extends Jdbcs {
      * @param Key           正确激活码为KQF2H284RW
      * @return 返回是否成功注册
      */
-    public boolean Sign(int AccountNumber, String Password, String Key){
-        boolean f=false;
-        String sql="insert into admin values("+AccountNumber+",'"+Password+"')";
+    public boolean Sign(int AccountNumber, String Password, String Key) {
+        boolean f = false;
+        String sql = "insert into admin values(" + AccountNumber + ",'" + Password + "')";
         try {
-            int a=statement.executeUpdate(sql);
-            if(a==1){
-                JOptionPane.showMessageDialog(null,"管理员注册成功！");
-                f=true;
+            int a = statement.executeUpdate(sql);
+            if (a == 1) {
+                JOptionPane.showMessageDialog(null, "管理员注册成功！");
+                f = true;
             }
-        }catch (SQLException e){
-            JOptionPane.showMessageDialog(null,"管理员账号存在，请重新输入账号！");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "管理员账号存在，请重新输入账号！");
             e.printStackTrace();
         }
         try {
@@ -35,7 +35,7 @@ public class AdministratorLoginAndSign extends Jdbcs {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "数据库关闭出现异常！");
         }
-        return  f;
+        return f;
     }
 
     public boolean Login(int AccountNumber, String Password) {
