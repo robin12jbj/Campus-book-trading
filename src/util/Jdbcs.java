@@ -9,7 +9,7 @@ public class Jdbcs {
     String driver = "com.mysql.cj.jdbc.Driver";
     String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
     String name = "root";
-    String passwd = "123456";
+    String passwd = "200198";
 
 
     public Jdbcs() {
