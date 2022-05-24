@@ -382,7 +382,7 @@ public class UserMain extends JFrame implements ActionListener {
             String bookPressTime = text3[3].getText() + "-" + text3[4].getText() + "-" + text3[5].getText();
             String messagePressTime = text3[6].getText() + "-" + text3[7].getText() + "-" + text3[8].getText();
             boolean f = buyer.addBuyMessage(buyer.getUserId(), text3[0].getText(), type.getSelectedItem().toString(), text3[1].getText(),
-                    text3[0].getText(), bookPressTime, messagePressTime, Float.parseFloat(text3[9].getText()),
+                    text3[2].getText(), bookPressTime, messagePressTime, Float.parseFloat(text3[9].getText()),
                     text3[10].getText(), text3[11].getText());
             if (f) {
                 JOptionPane.showMessageDialog(null, "发布求购成功！");
